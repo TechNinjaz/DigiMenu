@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechNinjaz.DigiMenu.Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechNinjaz.DigiMenu.Test", "TechNinjaz.DigiMenu.Test\TechNinjaz.DigiMenu.Test.csproj", "{0E0EDF87-BF67-4060-906A-3DF5D654DA79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechNinjaz.DigiMenu.Presentation", "TechNinjaz.DigiMenu.Presentation\TechNinjaz.DigiMenu.Presentation.csproj", "{5CCD66F6-164E-444A-8C65-3E8D4D8DD563}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechNinjaz.DigiMenu.Presentation", "TechNinjaz.DigiMenu.Presentation\TechNinjaz.DigiMenu.Presentation.csproj", "{6996ECA6-83B9-4323-AA7F-4745C07C74D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,7 +28,7 @@ Global
 		{DC7378D5-DB1E-4B02-943D-91B8779AC149} = {04F42E3F-2241-40E4-939B-7FFB9F74E985}
 		{BE9484EF-789F-41E0-BA64-7B407B66ADC2} = {04F42E3F-2241-40E4-939B-7FFB9F74E985}
 		{0E0EDF87-BF67-4060-906A-3DF5D654DA79} = {5B3132B6-7791-460E-B35D-7460ACB2C9CB}
-		{5CCD66F6-164E-444A-8C65-3E8D4D8DD563} = {04F42E3F-2241-40E4-939B-7FFB9F74E985}
+		{6996ECA6-83B9-4323-AA7F-4745C07C74D7} = {04F42E3F-2241-40E4-939B-7FFB9F74E985}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{479C63DB-B508-474C-9102-5143184579EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,9 +47,9 @@ Global
 		{0E0EDF87-BF67-4060-906A-3DF5D654DA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E0EDF87-BF67-4060-906A-3DF5D654DA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E0EDF87-BF67-4060-906A-3DF5D654DA79}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CCD66F6-164E-444A-8C65-3E8D4D8DD563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CCD66F6-164E-444A-8C65-3E8D4D8DD563}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CCD66F6-164E-444A-8C65-3E8D4D8DD563}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CCD66F6-164E-444A-8C65-3E8D4D8DD563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6996ECA6-83B9-4323-AA7F-4745C07C74D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6996ECA6-83B9-4323-AA7F-4745C07C74D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6996ECA6-83B9-4323-AA7F-4745C07C74D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6996ECA6-83B9-4323-AA7F-4745C07C74D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
