@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TechNinjaz.DigiMenu.Domain.@interface;
 
-namespace TechNinjaz.DigiMenu.Repository
+namespace TechNinjaz.DigiMenu.Service
 {
-    public interface IRepository <T> where T : class, IBaseEntity
+    public interface IService<T> where T : class, IBaseEntity 
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetById(Guid id);
