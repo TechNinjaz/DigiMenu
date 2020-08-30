@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>DigiMenu</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container >
+  <mat-sidenav #sidenav class="sidenav">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/activities'"> Home </a>
+      <a (click)="sidenav.toggle()" mat-list-item>Close</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 200vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
