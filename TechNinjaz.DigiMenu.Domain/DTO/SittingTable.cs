@@ -5,8 +5,8 @@ using TechNinjaz.DigiMenu.Domain.@interface;
 
 namespace TechNinjaz.DigiMenu.Domain.DTO
 {
-    [Table(nameof(Table))]
-    public class Table : IBaseEntity
+    [Table(nameof(SittingTable))]
+    public class SittingTable : IBaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -14,10 +14,10 @@ namespace TechNinjaz.DigiMenu.Domain.DTO
         [Required]   
         public Byte[] FoodImage { get; set; }
         [Required]   
-        public string ingredient { get; set; }
+        public string Title { get; set; }
+        [Required]   
+        public string Description { get; set; }
         [Required]   
         public Decimal Price { get; set; }
-        [Required]   
-        public Menu Menu { get; set; }
     }
 }

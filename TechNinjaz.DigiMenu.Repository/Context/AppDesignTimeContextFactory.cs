@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace TechNinjaz.DigiMenu.Repository.Context
 {
-    public class ApplicationContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
+    public class AppDesignTimeContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
     {
 
         public ApplicationDbContext CreateDbContext(string[] args)

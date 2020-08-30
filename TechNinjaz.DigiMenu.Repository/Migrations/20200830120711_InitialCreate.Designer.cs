@@ -9,7 +9,7 @@ using TechNinjaz.DigiMenu.Repository.Context;
 namespace TechNinjaz.DigiMenu.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200829192749_InitialCreate")]
+    [Migration("20200830120711_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -297,27 +297,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.ToTable("Shift");
                 });
 
-            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.StaffUser", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("AccountId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("StaffNumber")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.ToTable("StaffUser");
-                });
-
-            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.Table", b =>
+            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.SittingTable", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -333,7 +313,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Table");
+                    b.ToTable("SittingTable");
                 });
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.User", b =>
@@ -360,6 +340,9 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.Property<string>("FistName")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsStaffMember")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LastName")
                         .HasColumnType("TEXT");
@@ -490,15 +473,6 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.User", "WaiterId")
                         .WithMany()
                         .HasForeignKey("WaiterIdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.StaffUser", b =>
-                {
-                    b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.User", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

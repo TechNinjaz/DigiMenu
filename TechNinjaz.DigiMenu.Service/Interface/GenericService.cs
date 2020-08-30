@@ -4,34 +4,33 @@ using System.Threading.Tasks;
 using TechNinjaz.DigiMenu.Domain.@interface;
 using TechNinjaz.DigiMenu.Repository;
 
-namespace TechNinjaz.DigiMenu.Service
+namespace TechNinjaz.DigiMenu.Service.Interface
 {
-    public class Service<T> : IService<T> where T : class, IBaseEntity 
+    public class GenericService<T> : IGenericService<T> where T : class, IBaseEntity 
     {
-
         private readonly IRepository<T> _repository;
 
-        protected Service(IRepository<T> repository)
+        public GenericService(IRepository<T> repository)
         {
             _repository = repository;
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public virtual async Task<IEnumerable<T>> GetAll()
         {
             return await _repository.GetAll();
         }
 
-        public async Task<T> GetById(Guid id)
+        public virtual async Task<T> GetById(Guid id)
         {
             return  await _repository.GetById(id);
         }
 
-        public async Task<T> Save(T entity)
+        public virtual async Task<T> Save(T entity)
         {
             return await _repository.Save(entity);
         }
 
-        public async Task<T> Update(T entity)
+        public virtual async Task<T> Update(T entity)
         {
             return await _repository.Update(entity);
         }

@@ -8,8 +8,15 @@ namespace TechNinjaz.DigiMenu.Presentation.MapperFactory
     {
         public AutoMapping()
         {
-            CreateMap<User, UserModel>(); 
-            CreateMap<OrderStatus, OrderStatusModel>(); 
+            CreateMap<User, UserModel>().ReverseMap();
+            // CreateMap<Shift, ShiftModel>().ReverseMap();
+            // CreateMap<Menu, MenuModel>().ReverseMap();
+            // CreateMap<Order, OrderModel>().ReverseMap();
+            // CreateMap<MenuItem, MenuItemModel>().ReverseMap();
+            // CreateMap<StaffUser, StaffUserModel>().ReverseMap();
+            // CreateMap<OrderStatus, OrderStatusModel>().ReverseMap();
+            // CreateMap<SittingTable, SittingTableModel>().ReverseMap();
+            // CreateMap<PaymentMethod, PaymentMethodModel>().ReverseMap(); 
         }
     }
 }

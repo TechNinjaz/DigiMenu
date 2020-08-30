@@ -41,7 +41,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FistName = table.Column<string>(nullable: false),
-                    LastName = table.Column<string>(nullable: true)
+                    LastName = table.Column<string>(nullable: true),
+                    IsStaffMember = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,7 +115,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Table",
+                name: "SittingTable",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -123,7 +124,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Table", x => x.Id);
+                    table.PrimaryKey("PK_SittingTable", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -227,25 +228,6 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StaffUser",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    AccountId = table.Column<Guid>(nullable: false),
-                    StaffNumber = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StaffUser", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_StaffUser_AspNetUsers_AccountId",
-                        column: x => x.AccountId,
                         principalTable: "AspNetUsers",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -374,11 +356,6 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "IX_Order_WaiterIdId",
                 table: "Order",
                 column: "WaiterIdId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StaffUser_AccountId",
-                table: "StaffUser",
-                column: "AccountId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -411,10 +388,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "Shift");
 
             migrationBuilder.DropTable(
-                name: "StaffUser");
-
-            migrationBuilder.DropTable(
-                name: "Table");
+                name: "SittingTable");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -423,13 +397,13 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "Menu");
 
             migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
                 name: "PaymentMethod");
 
             migrationBuilder.DropTable(
                 name: "OrderStatus");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
         }
     }
 }

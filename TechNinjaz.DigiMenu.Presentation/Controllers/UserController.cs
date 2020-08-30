@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -12,16 +13,20 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
    
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController : BaseController<User,UserModel>
+    [Produces(MediaTypeNames.Application.Json)]
+    public class UserController : CustomBaseController<User,UserModel,UserService>
     {
-        public UserController(IService<User> baseService, IMapper mapper) : base(baseService, mapper)
+        
+        public UserController(UserService baseService, IMapper mapper) : base(baseService, mapper)
         {
         }
 
         [ActionName("RegisterUser")]
-        public override Task<UserModel> create(UserModel entity)
+        public override Task<UserModel> Create(UserModel entity)
         {
-            return base.create(entity);
+            return base.Create(entity);
         }
+
+       
     }
 }
