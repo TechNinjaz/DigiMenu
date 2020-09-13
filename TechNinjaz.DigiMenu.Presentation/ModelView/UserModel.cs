@@ -2,10 +2,11 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
+using TechNinjaz.DigiMenu.Domain.@interface;
 
 namespace TechNinjaz.DigiMenu.Presentation.ModelView
 {
-    public class UserModel : BaseModelView
+    public class UserModel : IBaseEntity
     {
         [EmailAddress]
         [Required(AllowEmptyStrings = false)]
@@ -21,5 +22,7 @@ namespace TechNinjaz.DigiMenu.Presentation.ModelView
         [PasswordPropertyText]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public int Id { get; set; }
     }
 }

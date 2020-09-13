@@ -1,9 +1,7 @@
 ﻿using System.Reflection;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TechNinjaz.DigiMenu.Domain.DTO;
 using TechNinjaz.DigiMenu.Repository.Context;
 
 namespace TechNinjaz.DigiMenu.Repository.Extensions
@@ -19,10 +17,5 @@ namespace TechNinjaz.DigiMenu.Repository.Extensions
                     => op.UseSqlite(connectionString, sql
                         => sql.MigrationsAssembly(migrationsAssemblyName)));
         }
-        public static void ChangeIdentityTableNames(this ModelBuilder builder)
-        {
-            builder.Entity<User>().Property(p => p.Id).HasColumnName("UserId");
-            builder.Entity<IdentityRole>().ToTable(nameof(IdentityRole));
-        } 
     }
 }

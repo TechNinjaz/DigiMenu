@@ -1,0 +1,23 @@
+<app-category (categoryEmitter)="setCategory($event)"></app-category>
+
+<div class="category-desc-wr" fxLayout="column" fxLayoutAlign="space-evenly center">
+  <span class="cat-Name">{{ category.name }}</span>
+  <span class="cat-Description">{{ category.description }}</span>
+</div>
+
+<mat-divider></mat-divider>
+
+<div fxLayoutAlign="center start"  class="flex-container">
+  <div *ngFor="let menuItem of category.menuItems">
+    <app-item-card [MenuItem]="menuItem"></app-item-card>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

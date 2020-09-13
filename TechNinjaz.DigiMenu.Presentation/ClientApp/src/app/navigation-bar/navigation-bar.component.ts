@@ -1,5 +1,5 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -7,25 +7,11 @@ import {NavigationEnd, Router} from '@angular/router';
   styleUrls: ['./navigation-bar.component.scss']
 })
 export class NavigationBarComponent implements OnInit {
-
-  @Output() toggleSidenav ;
-
-  private returnUrl ;
+  title  = environment.APP_TITLE;
 
   ngOnInit(): void {
-    this.returnUrl = '/';
-    this.toggleSidenav = new EventEmitter<void>();
   }
 
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.returnUrl = event.url;
-      }
-    });
-  }
-
-  // tslint:disable-next-line:typedef
-  public logout() {
+  constructor() {
   }
 }

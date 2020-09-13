@@ -6,7 +6,7 @@ using TechNinjaz.DigiMenu.Repository;
 
 namespace TechNinjaz.DigiMenu.Service.Interface
 {
-    public class GenericService<T> : IGenericService<T> where T : class, IBaseEntity 
+    public abstract class GenericService<T> : IGenericService<T> where T : class, IBaseEntity 
     {
         private readonly IRepository<T> _repository;
 
@@ -20,7 +20,7 @@ namespace TechNinjaz.DigiMenu.Service.Interface
             return await _repository.GetAll();
         }
 
-        public virtual async Task<T> GetById(Guid id)
+        public virtual async Task<T> GetById(int id)
         {
             return  await _repository.GetById(id);
         }

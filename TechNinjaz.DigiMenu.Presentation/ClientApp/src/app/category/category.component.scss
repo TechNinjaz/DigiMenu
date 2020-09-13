@@ -1,0 +1,39 @@
+.category-wrapper {
+  overflow: hidden;
+  overflow-x: auto;
+  width: 80%;
+  margin: auto;
+
+}
+.category-row {
+  margin-top: 40px !important;
+  padding-top: 20px;
+}
+.category-div {
+  margin: 0 10px;
+  overflow: auto;
+  position: relative;
+  color: black;
+  font: caption;
+  font-weight: bold;
+  text-align: center;
+}
+.category-div > img {
+  height: 100px;
+  width: 170px;
+  box-shadow: 10px 3px 7px 0 #333
+}
+
+.category-description {
+  margin-top: -28px;
+  text-align: center;
+}
+
+.category-description > span {
+}
+.category-wrapper::-webkit-scrollbar {
+  //width: 0;
+  //background: transparent;
+}
+
+

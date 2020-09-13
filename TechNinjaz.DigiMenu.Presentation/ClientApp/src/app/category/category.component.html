@@ -1,0 +1,13 @@
+<div class="category-wrapper">
+  <div fxLayout="row" fxLayoutAlign="center center" >
+    <div class="category-row" *ngFor="let categoryModel of categoryList" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+      <a class="category-div" (click)="sendCategoryModel(categoryModel)">
+        <img src="../../assets/img/images.jpg" alt="{{ categoryModel.description }}">
+<!--        <img src="{{categoryModel.categoryImage }}" alt="{{ categoryModel.description }}">-->
+        <div class="category-description ">
+          <span>{{ categoryModel.description }}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

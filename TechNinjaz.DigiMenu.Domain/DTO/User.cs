@@ -9,7 +9,7 @@ using TechNinjaz.DigiMenu.Domain.@interface;
 namespace TechNinjaz.DigiMenu.Domain.DTO
 {
     [Table(nameof(User))]
-    public class User : IdentityUser<Guid>, IBaseEntity
+    public class User : IdentityUser<int>, IBaseEntity
     {
         [Required]   
         public string FistName { get; set; }

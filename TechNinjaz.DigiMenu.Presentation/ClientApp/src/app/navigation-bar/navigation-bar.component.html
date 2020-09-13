@@ -3,18 +3,18 @@
     <button mat-icon-button>
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
-    <h1>DigiMenu</h1>
+    <h1>{{ title }}</h1>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container >
   <mat-sidenav #sidenav class="sidenav">
     <mat-nav-list>
-      <a mat-list-item [routerLink]="'/activities'"> Home </a>
-      <a (click)="sidenav.toggle()" mat-list-item>Close</a>
+      <a mat-list-item [routerLink]="'/'"> Home </a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
-    <div style="height: 200vh;">
+    <div class="sidenav-content">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

@@ -1,17 +1,17 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TechNinjaz.DigiMenu.Domain.@interface;
 
 namespace TechNinjaz.DigiMenu.Domain.DTO
 {
-    [Table(nameof(OrderStatus))]
-    public class OrderStatus : IBaseEntity
+    [Table(nameof(OrderDetail))]
+    public class OrderDetail: IBaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]   
-        public string Description { get; set; }
+        [Column(TypeName = "Test")]
+        public Order Order { get; set; }
+        public MenuItem MenuItem { get; set; }
     }
 }

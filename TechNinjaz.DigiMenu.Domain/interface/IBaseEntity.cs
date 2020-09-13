@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TechNinjaz.DigiMenu.Domain.@interface
 {
-    public interface IBaseEntity: IEntity<Guid>
+    public interface IBaseEntity: IEntity<int>
     {
         
     }

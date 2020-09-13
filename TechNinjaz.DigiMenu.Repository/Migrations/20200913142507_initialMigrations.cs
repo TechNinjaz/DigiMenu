@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TechNinjaz.DigiMenu.Repository.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initialMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true)
@@ -25,7 +26,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
@@ -46,41 +48,30 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.UserId);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "IdentityRole",
+                name: "MenuCategory",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    NormalizedName = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    CategoryImage = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IdentityRole", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Menu",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Description = table.Column<string>(nullable: false),
-                    CategoryImage = table.Column<byte[]>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Menu", x => x.Id);
+                    table.PrimaryKey("PK_MenuCategory", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "OrderStatus",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -92,7 +83,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "PaymentMethod",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -104,7 +96,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "Shift",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ShiftStartTime = table.Column<TimeSpan>(nullable: false),
                     ShiftEndTime = table.Column<TimeSpan>(nullable: false),
                     Description = table.Column<string>(nullable: false)
@@ -118,7 +111,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "SittingTable",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     TableArea = table.Column<string>(nullable: false),
                     TableNumber = table.Column<string>(nullable: false)
                 },
@@ -133,7 +127,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    RoleId = table.Column<Guid>(nullable: false),
+                    RoleId = table.Column<int>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
                 },
@@ -154,7 +148,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
                 },
@@ -165,7 +159,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         name: "FK_AspNetUserClaims_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -176,7 +170,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -185,7 +179,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         name: "FK_AspNetUserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -193,8 +187,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false)
+                    UserId = table.Column<int>(nullable: false),
+                    RoleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -209,7 +203,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -217,7 +211,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
                     LoginProvider = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
@@ -229,7 +223,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -237,34 +231,37 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "MenuItem",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    FoodImage = table.Column<byte[]>(nullable: false),
-                    ingredient = table.Column<string>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FoodImage = table.Column<byte[]>(nullable: true),
+                    Title = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
-                    MenuId = table.Column<Guid>(nullable: false)
+                    MenuCategoryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MenuItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MenuItem_Menu_MenuId",
-                        column: x => x.MenuId,
-                        principalTable: "Menu",
+                        name: "FK_MenuItem_MenuCategory_MenuCategoryId",
+                        column: x => x.MenuCategoryId,
+                        principalTable: "MenuCategory",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Order",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    WaiterIdId = table.Column<Guid>(nullable: false),
-                    CustomerId = table.Column<Guid>(nullable: true),
-                    StatusId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    WaiterIdId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: true),
+                    StatusId = table.Column<int>(nullable: false),
                     OrderAmount = table.Column<decimal>(nullable: false),
                     PaidAmount = table.Column<decimal>(nullable: false),
-                    PaymentMethodId = table.Column<Guid>(nullable: false)
+                    PaymentMethodId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -273,7 +270,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         name: "FK_Order_AspNetUsers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Order_PaymentMethod_PaymentMethodId",
@@ -291,8 +288,41 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         name: "FK_Order_AspNetUsers_WaiterIdId",
                         column: x => x.WaiterIdId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderDetail",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Order = table.Column<byte[]>(type: "Test", nullable: true),
+                    MenuItemId = table.Column<int>(nullable: true),
+                    OrderId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderDetail", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderDetail_Order_Id",
+                        column: x => x.Id,
+                        principalTable: "Order",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderDetail_MenuItem_MenuItemId",
+                        column: x => x.MenuItemId,
+                        principalTable: "MenuItem",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderDetail_Order_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Order",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -333,9 +363,9 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuItem_MenuId",
+                name: "IX_MenuItem_MenuCategoryId",
                 table: "MenuItem",
-                column: "MenuId");
+                column: "MenuCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_CustomerId",
@@ -356,6 +386,16 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "IX_Order_WaiterIdId",
                 table: "Order",
                 column: "WaiterIdId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetail_MenuItemId",
+                table: "OrderDetail",
+                column: "MenuItemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetail_OrderId",
+                table: "OrderDetail",
+                column: "OrderId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -376,13 +416,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "IdentityRole");
-
-            migrationBuilder.DropTable(
-                name: "MenuItem");
-
-            migrationBuilder.DropTable(
-                name: "Order");
+                name: "OrderDetail");
 
             migrationBuilder.DropTable(
                 name: "Shift");
@@ -394,7 +428,10 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Menu");
+                name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "MenuItem");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
@@ -404,6 +441,9 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderStatus");
+
+            migrationBuilder.DropTable(
+                name: "MenuCategory");
         }
     }
 }

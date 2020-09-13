@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule, Title} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,29 +11,46 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatMenuModule} from '@angular/material/menu';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { HomeComponent } from './home/home.component';
+import { ItemCardComponent } from './item-card/item-card.component';
+import { CategoryComponent } from './category/category.component';
+import {HttpClientModule} from '@angular/common/http';
+import {CategoryService} from '../service/category.service';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
-import {MatMenuModule} from "@angular/material/menu";
-import {FlexLayoutModule} from "@angular/flex-layout";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationBarComponent,
+    HomeComponent,
+    ItemCardComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDividerModule,
+    MatCardModule,
+    MatListModule,
   ],
-  providers: [],
+  providers: [
+    CategoryService,
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

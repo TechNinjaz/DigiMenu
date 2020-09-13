@@ -14,9 +14,10 @@ namespace TechNinjaz.DigiMenu.Domain.DTO
      
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required]   
         public User WaiterId { get; set; }
+        
         public User Customer { get; set; }
         [Required]   
         public OrderStatus Status { get; set; }
@@ -30,6 +31,7 @@ namespace TechNinjaz.DigiMenu.Domain.DTO
         public decimal GratuityAmount => PaidAmount - OrderAmount;
         [Required]   
         public PaymentMethod PaymentMethod { get; set; }
-        public IEnumerable<MenuItem> MenuItems { get; set; }
+        [Required]
+        public IEnumerable<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace TechNinjaz.DigiMenu.Domain.DTO
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-        [Required]   
+        public int Id { get; set; }
+   
         public Byte[] FoodImage { get; set; }
         [Required]   
         public string Title { get; set; }

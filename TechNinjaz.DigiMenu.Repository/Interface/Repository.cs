@@ -22,7 +22,7 @@ namespace TechNinjaz.DigiMenu.Repository
             return await _context.Set<T>().ToListAsync();
         }
 
-        public virtual async Task<T> GetById(Guid id)
+        public virtual async Task<T> GetById(int id)
         {
             return await _context.Set<T>().SingleOrDefaultAsync(s=>s.Id.Equals(id));
         }

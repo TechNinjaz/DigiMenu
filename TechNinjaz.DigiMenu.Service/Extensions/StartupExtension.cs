@@ -19,11 +19,12 @@ namespace TechNinjaz.DigiMenu.Service.Extensions
             services.AddDefaultDatabaseContext(configuration);
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+            services.AddScoped(typeof(MenuCategoryRepository));
+            // services.AddScoped(typeof(IGenericService<>),typeof(GenericService<>));
+            services.AddScoped(typeof(MenuCategoryService));
             services.AddScoped(typeof(OrderStatusService));
             services.AddScoped(typeof(MenuItemService));
             services.AddScoped(typeof(OrderService));
-            services.AddScoped(typeof(MenuService));
             services.AddScoped(typeof(UserService));
         }
         public static void SetAngularSpa(this IApplicationBuilder builder, IWebHostEnvironment env)

@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using TechNinjaz.DigiMenu.Domain.DTO;
 using TechNinjaz.DigiMenu.Repository.Context;
 
 namespace TechNinjaz.DigiMenu.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200830120711_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200913142507_initialMigrations")]
+    partial class initialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,30 +19,11 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.7");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IdentityRole");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
-                {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -64,7 +46,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,8 +58,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -86,7 +68,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,8 +80,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -108,7 +90,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("TEXT");
@@ -119,8 +101,8 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -129,13 +111,13 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -144,10 +126,10 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("TEXT");
@@ -163,60 +145,65 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.Menu", b =>
+            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.MenuCategory", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<byte[]>("CategoryImage")
-                        .IsRequired()
                         .HasColumnType("BLOB");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuCategory");
+                });
+
+            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.MenuItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Menu");
-                });
-
-            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.MenuItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
                     b.Property<byte[]>("FoodImage")
-                        .IsRequired()
                         .HasColumnType("BLOB");
 
-                    b.Property<Guid>("MenuId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("MenuCategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("ingredient")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuId");
+                    b.HasIndex("MenuCategoryId");
 
                     b.ToTable("MenuItem");
                 });
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.Order", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<decimal>("OrderAmount")
                         .HasColumnType("TEXT");
@@ -224,14 +211,14 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.Property<decimal>("PaidAmount")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("PaymentMethodId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("PaymentMethodId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("StatusId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("WaiterIdId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("WaiterIdId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -246,11 +233,35 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.ToTable("Order");
                 });
 
+            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.OrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("MenuItemId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Order>("Order")
+                        .HasColumnType("Test");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuItemId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetail");
+                });
+
             modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.OrderStatus", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -263,9 +274,9 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.PaymentMethod", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -278,9 +289,9 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.Shift", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -299,9 +310,9 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.SittingTable", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("TableArea")
                         .IsRequired()
@@ -318,10 +329,9 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("UserId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
@@ -392,16 +402,16 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
                     b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.User", null)
                         .WithMany()
@@ -410,7 +420,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.User", null)
                         .WithMany()
@@ -419,9 +429,9 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -434,7 +444,7 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
                     b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.User", null)
                         .WithMany()
@@ -445,11 +455,9 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.MenuItem", b =>
                 {
-                    b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.Menu", "Menu")
+                    b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.MenuCategory", null)
                         .WithMany("MenuItems")
-                        .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MenuCategoryId");
                 });
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.Order", b =>
@@ -475,6 +483,23 @@ namespace TechNinjaz.DigiMenu.Repository.Migrations
                         .HasForeignKey("WaiterIdId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TechNinjaz.DigiMenu.Domain.DTO.OrderDetail", b =>
+                {
+                    b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.Order", null)
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.MenuItem", "MenuItem")
+                        .WithMany()
+                        .HasForeignKey("MenuItemId");
+
+                    b.HasOne("TechNinjaz.DigiMenu.Domain.DTO.Order", null)
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId");
                 });
 #pragma warning restore 612, 618
         }
