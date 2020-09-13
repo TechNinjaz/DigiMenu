@@ -22,9 +22,14 @@ export class CategoryService {
     this.BaseUrl =  environment.BASE_API_URL + '/api/MenuCategory/';
   }
 
- getCategoryList(): Observable<any> {
-      return this.http.get<CategoryModel[]>(this.BaseUrl + 'GetAll')
+ getCategory(id: number): Observable<any> {
+      return this.http.get<CategoryModel>(this.BaseUrl + `GetById?id=${id}`)
         .pipe( retry(1), catchError(this.errorHandler));
+  }
+
+  getCategoryList(): Observable<any> {
+    return this.http.get<CategoryModel[]>(this.BaseUrl + 'GetAll')
+      .pipe( retry(1), catchError(this.errorHandler));
   }
 
   errorHandler(error): any {

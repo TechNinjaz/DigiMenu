@@ -8,7 +8,8 @@ import {MenuItemModel} from '../../model/menu-item';
 })
 export class ItemCardComponent implements OnInit {
 
-  @Input() MenuItem: MenuItemModel;
+  @Input()
+  MenuItem: MenuItemModel;
 
   constructor() { }
 

@@ -27,7 +27,9 @@ namespace TechNinjaz.DigiMenu.Repository
 
         public async Task<MenuCategory> GetById(int id)
         {
-            return await _categories.SingleOrDefaultAsync(menu=>menu.Id.Equals(id));;
+            return await _categories
+                .Include(child=> child.MenuItems)
+                .SingleOrDefaultAsync(menu=>menu.Id.Equals(id));;
         }
 
         public async Task<MenuCategory> Save(MenuCategory entity)

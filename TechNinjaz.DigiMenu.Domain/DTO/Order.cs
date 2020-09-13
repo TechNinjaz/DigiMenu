@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.InteropServices;
 using TechNinjaz.DigiMenu.Domain.@interface;
 
 namespace TechNinjaz.DigiMenu.Domain.DTO
@@ -17,7 +16,6 @@ namespace TechNinjaz.DigiMenu.Domain.DTO
         public int Id { get; set; }
         [Required]   
         public User WaiterId { get; set; }
-        
         public User Customer { get; set; }
         [Required]   
         public OrderStatus Status { get; set; }

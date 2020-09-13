@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {CategoryModel} from '../../model/category';
 import {CategoryService} from '../../service/category.service';
 
@@ -10,21 +10,26 @@ import {CategoryService} from '../../service/category.service';
 export class CategoryComponent implements OnInit {
 
   categoryList: CategoryModel[] = [];
+  category: CategoryModel;
   @Output()
   private categoryEmitter = new EventEmitter<CategoryModel>();
 
-  constructor(private categoryService: CategoryService) {
-
-  }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.getCategoryList();
-
   }
 
-  sendCategoryModel(model: CategoryModel): void {
-    console.log(model);
+  private sendCategoryModel(model: CategoryModel): void {
     this.categoryEmitter.emit(model);
+  }
+
+  getCategoryById(id: number): void {
+    this.categoryService.getCategory(id)
+      .subscribe((resp: CategoryModel) => {
+        this.category = resp;
+        this.sendCategoryModel(this.category);
+      });
   }
 
   getCategoryList(): void {

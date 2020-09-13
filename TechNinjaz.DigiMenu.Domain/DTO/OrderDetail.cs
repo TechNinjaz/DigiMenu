@@ -10,7 +10,6 @@ namespace TechNinjaz.DigiMenu.Domain.DTO
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Column(TypeName = "Test")]
         public Order Order { get; set; }
         public MenuItem MenuItem { get; set; }
     }
