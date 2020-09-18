@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TechNinjaz.DigiMenu.Domain.DTO;
-using TechNinjaz.DigiMenu.Service;
+using TechNinjaz.DigiMenu.Core.Entities;
+using TechNinjaz.DigiMenu.Core.Interfaces;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
@@ -13,30 +12,31 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
     [Produces(MediaTypeNames.Application.Json)]
     public class MenuCategoryController: CustomBaseController<MenuCategory>
     {
-        private readonly MenuCategoryService _menuService;
-        public MenuCategoryController(MenuCategoryService service, IMapper mapper) : base(mapper)
+        private readonly IGenericRepository<MenuCategory> _menuService;
+
+        public MenuCategoryController(IGenericRepository<MenuCategory> menuService)
         {
-            _menuService = service;
+            _menuService = menuService;
         }
 
         public override async Task<MenuCategory> Create(MenuCategory entity)
         {
-            return await _menuService.Save(entity);
+            return await _menuService.SaveAsync(entity);
         }
 
         public override async Task<MenuCategory> Update(MenuCategory entity)
         {
-            return await _menuService.Update(entity);
+            return await _menuService.UpdateAsync(entity);
         }
 
         public override async Task<MenuCategory> GetById(int id)
         {
-            return await _menuService.GetById(id);
+            return await _menuService.GetByIdAsync(id);
         }
 
-        public override async Task<IEnumerable<MenuCategory>> GetAll()
+        public override async Task<IReadOnlyList<MenuCategory>> GetAll()
         {
-            return await _menuService.GetAll();
+            return await _menuService.GetAllAsync();
         }
     }
 }

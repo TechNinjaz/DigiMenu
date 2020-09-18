@@ -1,33 +1,27 @@
-using System;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TechNinjaz.DigiMenu.Domain.DTO;
-using TechNinjaz.DigiMenu.Repository;
-using TechNinjaz.DigiMenu.Repository.Extensions;
-using TechNinjaz.DigiMenu.Service;
-using TechNinjaz.DigiMenu.Service.Extensions;
+using TechNinjaz.DigiMenu.Infrastructure.Extensions;
 
 namespace TechNinjaz.DigiMenu.Presentation
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private readonly IConfiguration _config;
 
-        private IConfiguration Configuration { get; }
+        public Startup(IConfiguration config)
+        {
+            _config = config;
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-            services.InjectServicesDependencies(Configuration);
+            services.InjectServicesDependencies();
+            services.AddDefaultDatabaseContext(_config);
             services.AddMvc(options => options.EnableEndpointRouting = false);;
             services.AddControllersWithViews();
             services.AddSpaStaticFiles(config =>
@@ -37,7 +31,7 @@ namespace TechNinjaz.DigiMenu.Presentation
             services.AddSwaggerGen();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -59,7 +53,7 @@ namespace TechNinjaz.DigiMenu.Presentation
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", configuration["ApplicationName"]);
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", _config["ApplicationName"]);
             });
 
             app.UseRouting();
@@ -69,6 +63,8 @@ namespace TechNinjaz.DigiMenu.Presentation
             });
             app.MapWhen(context=> context.IsSwagger("/swagger"),
                      builder  => builder.SetAngularSpa(env));
+
+            app.EnsureMigrationsRunAsync();
 
         }
     }

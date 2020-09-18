@@ -1,12 +1,9 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
-using TechNinjaz.DigiMenu.Domain.@interface;
 
 namespace TechNinjaz.DigiMenu.Presentation.ModelView
 {
-    public class UserModel : IBaseEntity
+    public class UserModel
     {
         [EmailAddress]
         [Required(AllowEmptyStrings = false)]

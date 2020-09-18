@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TechNinjaz.DigiMenu.Domain.DTO;
+using TechNinjaz.DigiMenu.Core.Entities;
 using TechNinjaz.DigiMenu.Presentation.ModelView;
 
 namespace TechNinjaz.DigiMenu.Presentation.MapperFactory
