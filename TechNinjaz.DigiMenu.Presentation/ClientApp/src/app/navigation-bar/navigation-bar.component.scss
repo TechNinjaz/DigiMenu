@@ -1,7 +1,63 @@
-.sidenav{
-  width: 230px;
+.nav-container {
+  height: 100%;
+  background: #fafafa;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  header {
+    background: #3f51b5;
+    color: #fff;
+    padding: 18px 24px;
+
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    .menu-button {
+      margin-right: 24px;
+      min-width: 0;
+      padding: 0;
+      line-height: normal;
+    }
+    .app-title {
+      padding: 0 3px;
+    }
+  }
+}
+.sidenav-container {
+  flex: 1;
+
+  .sidenav {
+    min-width: 240px;
+
+    a {
+      display: block;
+      padding: 6px 24px;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  main {
+    padding: 18px 24px;
+  }
 }
 
-.sidenav-content {
-  height: 200vh;
+.header {
+  height: 250px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 150px;
+  background: rgba(0,0,255,.1);
+}
+
+.rightSidenav_toggle {
+  width: 300px;
+  height: 50px;
+  background-color: #eee;
 }

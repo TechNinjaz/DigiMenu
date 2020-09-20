@@ -21,7 +21,7 @@ import {CategoryService} from '../service/category.service';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
-
+import {NavBarService} from '../service/nav-bar.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +49,7 @@ import {MatListModule} from '@angular/material/list';
   ],
   providers: [
     CategoryService,
+    NavBarService,
     Title
   ],
   bootstrap: [AppComponent]

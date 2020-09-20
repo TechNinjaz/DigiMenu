@@ -11,24 +11,19 @@ namespace TechNinjaz.DigiMenu.Core.Entities
     {
         [Required]   
         public User WaiterId { get; set; }
-        
         public User Customer { get; set; }
-        
         [Required]   
         public OrderStatus Status { get; set; }
-        
         [Required]   
         [DefaultValue(double.NaN)]
         public decimal OrderAmount { get; set; }
         [Required]   
         [DefaultValue(double.NaN)]
         public decimal PaidAmount { get; set; }
-        [Required]   
+        [Required]
         public decimal GratuityAmount => PaidAmount - OrderAmount;
-        
         [Required]   
         public PaymentMethod PaymentMethod { get; set; }
-        
         [Required]
         public IEnumerable<OrderDetail> OrderDetails { get; set; }
     }
