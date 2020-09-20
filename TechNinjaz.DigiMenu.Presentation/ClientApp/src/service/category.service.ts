@@ -23,7 +23,7 @@ export class CategoryService {
   }
 
  getCategory(id: number): Observable<any> {
-      return this.http.get<CategoryModel>(this.BaseUrl + `GetById?id=${id}`)
+      return this.http.get<CategoryModel>(this.BaseUrl + `GetById/${id}`)
         .pipe( retry(1), catchError(this.errorHandler));
   }
 

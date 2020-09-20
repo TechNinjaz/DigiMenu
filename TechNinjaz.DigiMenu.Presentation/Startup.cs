@@ -22,13 +22,12 @@ namespace TechNinjaz.DigiMenu.Presentation
             services.AddAutoMapper(typeof(Startup));
             services.InjectServicesDependencies();
             services.AddDefaultDatabaseContext(_config);
-            services.AddMvc(options => options.EnableEndpointRouting = false);;
             services.AddControllersWithViews();
+            services.AddSwaggerDoc(_config);
             services.AddSpaStaticFiles(config =>
             {
                 config.RootPath = "ClientApp/dist";
             });
-            services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -50,20 +49,10 @@ namespace TechNinjaz.DigiMenu.Presentation
                 app.UseSpaStaticFiles();
             }
             
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", _config["ApplicationName"]);
-            });
-
             app.UseRouting();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute( "default",  "{controller}/{action=Index}/{id?}");
-            });
-            app.MapWhen(context=> context.IsSwagger("/swagger"),
-                     builder  => builder.SetAngularSpa(env));
-
+            app.UseEndpoints(endpoint => endpoint.MapControllers());
+            
+            app.SwaggerConfig(_config, env);
             app.EnsureMigrationsRunAsync();
 
         }

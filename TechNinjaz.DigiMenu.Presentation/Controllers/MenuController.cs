@@ -1,20 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Net.Mime;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using TechNinjaz.DigiMenu.Core.Entities;
 using TechNinjaz.DigiMenu.Core.Interfaces;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    [Produces(MediaTypeNames.Application.Json)]
-    public class MenuCategoryController: CustomBaseController<MenuCategory>
+    public class MenuCategoryController: BaseApiController<MenuCategory>
     {
-        private readonly IGenericRepository<MenuCategory> _menuService;
+        private readonly IGenericService<MenuCategory> _menuService;
 
-        public MenuCategoryController(IGenericRepository<MenuCategory> menuService)
+        public MenuCategoryController(IGenericService<MenuCategory> menuService)
         {
             _menuService = menuService;
         }
@@ -38,5 +33,7 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
         {
             return await _menuService.GetAllAsync();
         }
+
+      
     }
 }

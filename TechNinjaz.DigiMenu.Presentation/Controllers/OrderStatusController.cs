@@ -1,17 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Net.Mime;
 using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using TechNinjaz.DigiMenu.Core.Entities;
 using TechNinjaz.DigiMenu.Core.Interfaces;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    [Produces(MediaTypeNames.Application.Json)]
-    public class OrderStatusController : CustomBaseController<OrderStatus>
+    public class OrderStatusController : BaseApiController<OrderStatus>
     {
         private readonly IGenericService<OrderStatus> _orderStatusService;
 

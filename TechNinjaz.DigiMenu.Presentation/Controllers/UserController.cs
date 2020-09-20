@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mime;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +9,7 @@ using TechNinjaz.DigiMenu.Presentation.ModelView;
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
    
-    [ApiController]
-    [Route("api/[controller]")]
-    [Produces(MediaTypeNames.Application.Json)]
-    public class UserController : CustomBaseController<UserModel>
+    public class UserController : BaseApiController<UserModel>
     {
         private readonly IGenericService<User> _service;
         private readonly IMapper _mapper;

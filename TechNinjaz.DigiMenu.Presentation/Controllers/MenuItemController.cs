@@ -1,16 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Net.Mime;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using TechNinjaz.DigiMenu.Core.Entities;
 using TechNinjaz.DigiMenu.Core.Interfaces;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    [Produces(MediaTypeNames.Application.Json)]
-    public class MenuItemController : CustomBaseController<MenuItem> 
+    public class MenuItemController : BaseApiController<MenuItem> 
     {
         private readonly IGenericService<MenuItem> _menuItemService;
 

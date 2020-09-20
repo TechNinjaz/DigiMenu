@@ -3,7 +3,7 @@ using TechNinjaz.DigiMenu.Core.Entities;
 
 namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
 {
-    public static class FluentModelBuilderExtension
+    public static class DbContextExtension
     {
         public static void ConfigTable(this ModelBuilder builder)
         {

@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
-    public abstract class CustomBaseController<T> :ControllerBase where T : class
+    [ApiController]
+    [Route("api/[controller]")]
+    [Produces(MediaTypeNames.Application.Json)]
+    public abstract class BaseApiController<T> : ControllerBase where T : class
     {
         
         [HttpPost("[action]")]
