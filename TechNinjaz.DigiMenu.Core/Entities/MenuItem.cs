@@ -14,7 +14,6 @@ namespace TechNinjaz.DigiMenu.Core.Entities
         public string Description { get; set; }
         [Required]   
         public decimal Price { get; set; }
-        [Required]
         [DefaultValue(false)]
         public bool IsOnASpecial { get; set; }
         public string ItemImageUrl { get; set; }
