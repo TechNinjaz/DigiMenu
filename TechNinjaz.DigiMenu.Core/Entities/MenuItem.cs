@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,7 +13,10 @@ namespace TechNinjaz.DigiMenu.Core.Entities
         [Required]   
         public string Description { get; set; }
         [Required]   
-        public Decimal Price { get; set; }
+        public decimal Price { get; set; }
+        [Required]
+        [DefaultValue(false)]
+        public bool IsOnASpecial { get; set; }
         public string ItemImageUrl { get; set; }
     }
 }
