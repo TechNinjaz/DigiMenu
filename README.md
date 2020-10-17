@@ -36,9 +36,12 @@ DigiMenu APP
  <i> when you run project the 1st time it will download node packages defined in </i> `TechNinjaz.DigiMenu.Presentation/ClientApp/package.json`
 
 
-## Add Migration #
+## Migration #
 
-command `dotnet ef migrations add initialCreate -p TechNinjaz.DigiMenu.Infrastructure -s TechNinjaz.DigiMenu.Presentation`
+command 
+* add `dotnet ef migrations add newMigrationName -p TechNinjaz.DigiMenu.Infrastructure -s TechNinjaz.DigiMenu.Presentation`
+* create script `dotnet ef migrations script newMigrationName -p TechNinjaz.DigiMenu.Infrastructure -s TechNinjaz.DigiMenu.Presentation`
+* apply changes to db `dotnet ef database update  -p TechNinjaz.DigiMenu.Infrastructure -s TechNinjaz.DigiMenu.Presentation`
 
 <b><i> currently we using SQLite so we need to drop all migrations/db and add them when changing new db model. you can use anther db but just update <i/></b>
 * `StartupExtension.AddDefaultDatabaseContext` 
