@@ -10,6 +10,7 @@ import {SharedModule} from './shared/shared.module';
 import {KitchenModule} from './kitchen/kitchen.module';
 import {ClientModule} from './client/client.module';
 import {AdminModule} from './admin/admin.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {AdminModule} from './admin/admin.module';
     SharedModule,
     KitchenModule,
     ClientModule,
-    AdminModule
+    AdminModule,
+    NgbModule
   ],
   providers: [
     Title

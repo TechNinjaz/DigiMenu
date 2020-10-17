@@ -10,7 +10,7 @@ import {MenuCategoryService} from '../../shared/service/menu-category.service';
 export class HomeComponent implements OnInit {
 
   menuCategories: IMenuCategory[] = [];
-  category: IMenuCategory = new IMenuCategory();
+  menuCategory: IMenuCategory;
 
   constructor(private categoryService: MenuCategoryService) {
   }
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   getMenuCategoryById(id: number): void {
     this.categoryService.getCategory(id)
       .subscribe((category: IMenuCategory) => {
-        this.category = category;
+        this.menuCategory = category;
       });
   }
 
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     this.categoryService.getCategoryList()
       .subscribe((categories: IMenuCategory[]) => {
         this.menuCategories = categories;
-        this.category = this.menuCategories[0];
+        this.menuCategories.sort()
       });
   }
 }

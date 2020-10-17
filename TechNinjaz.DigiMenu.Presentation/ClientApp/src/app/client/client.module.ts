@@ -4,10 +4,10 @@ import {HomeComponent} from './home/home.component';
 import {ItemCardComponent} from './item-card/item-card.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {RouterModule} from '@angular/router';
-import {FlexModule} from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -18,10 +18,10 @@ import {MatButtonModule} from '@angular/material/button';
     CommonModule,
     MatDividerModule,
     RouterModule,
-    FlexModule,
     MatCardModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule
   ],
   providers: [ ]
 })

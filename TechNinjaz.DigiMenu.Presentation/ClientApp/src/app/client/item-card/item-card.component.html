@@ -14,7 +14,7 @@
     <button mat-button color="warn">
       <mat-icon >add_box</mat-icon>
     </button>
-    <button mat-button class="menu-item-price">R {{ MenuItem.price }}</button>
+    <button mat-button class="menu-item-price">{{ MenuItem.price | currency }}</button>
   </mat-card-actions>
 
 </mat-card>

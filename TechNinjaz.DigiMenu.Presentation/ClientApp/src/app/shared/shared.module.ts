@@ -5,7 +5,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {RouterModule} from '@angular/router';
-import {FlexModule} from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
 import {MenuCategoryService} from './service/menu-category.service';
 
@@ -19,7 +18,6 @@ import {MenuCategoryService} from './service/menu-category.service';
     MatSidenavModule,
     MatListModule,
     RouterModule,
-    FlexModule,
     MatButtonModule
   ],
   exports: [

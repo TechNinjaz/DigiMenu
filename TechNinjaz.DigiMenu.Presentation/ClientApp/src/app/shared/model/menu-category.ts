@@ -1,6 +1,6 @@
 import {IMenuItem} from './menu-item';
 
-export class IMenuCategory {
+export interface IMenuCategory {
   id: number;
   createdAt: string;
   name: string;

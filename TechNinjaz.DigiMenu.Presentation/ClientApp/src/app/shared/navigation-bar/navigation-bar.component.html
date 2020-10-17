@@ -1,20 +1,19 @@
-<div class="nav-container">
+<div class="navbar">
   <header>
-    <div>
+    <div class="navbar navbar-light bg-light">
       <button mat-button class="menu-button" (click)="onSidenavClick()">
         <mat-icon>{{ toggleActive ? 'menu_open' : 'menu' }}</mat-icon>
       </button>
-      <a [routerLink]="'/'">
+      <a class="navbar-brand" [routerLink]="'/'">
         <span class="app-title">{{ title }}</span>
       </a>
     </div>
-    <div fxFlexAlign="end" class="menu-button-left">
+    <div class="d-flex justify-content-end ">
       <button mat-button>
-        <mat-icon >shopping_cart</mat-icon>
+        <mat-icon>shopping_cart</mat-icon>
         <div class="CartAndItemCount" [hidden]="false">
           <span>5</span>
         </div>
-
       </button>
     </div>
   </header>
