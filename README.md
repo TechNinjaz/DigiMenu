@@ -48,6 +48,11 @@ command
 * `DesignTimeContextFactory`
 
 
+## Third Party Libs and Framework Docs ##
+* [Angular doc](https://angular.io/docs)
+* [Angular Material Doc](https://material.angular.io/components/badge/overview)
+* [NgFlex examples](https://tburleson-layouts-demos.firebaseapp.com/#/docs)
+* [angular wiki](https://www.angularjswiki.com/)
 
 
 [git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
