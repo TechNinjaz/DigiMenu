@@ -9,9 +9,10 @@ namespace TechNinjaz.DigiMenu.Presentation.MapperFactory
         public AutoMapping()
         {
             CreateMap<User, UserModel>().ReverseMap();
+            CreateMap<Order, OrderModel>().ReverseMap();
+            CreateMap<OrderDetail, OrderDetailModel>().ReverseMap();
             // CreateMap<Shift, ShiftModel>().ReverseMap();
             // CreateMap<Menu, MenuModel>().ReverseMap();
-            // CreateMap<Order, OrderModel>().ReverseMap();
             // CreateMap<MenuItem, MenuItemModel>().ReverseMap();
             // CreateMap<StaffUser, StaffUserModel>().ReverseMap();
             // CreateMap<OrderStatus, OrderStatusModel>().ReverseMap();

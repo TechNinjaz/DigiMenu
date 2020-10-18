@@ -1,9 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="30px">
+  <h1 class="text-center"> TEST</h1>
+</div>
 
-
-
-<mat-tab-group mat-align-tabs="center" color="warn">
+<mat-tab-group mat-align-tabs="center" color="warn" *ngIf="menuCategories.length > 0">
   <div *ngFor="let category of menuCategories">
-
     <mat-tab *ngIf="category.menuItems.length > 0">
       <ng-template mat-tab-label>
         <div class="tab-header">
@@ -11,17 +11,17 @@
           <div class="tab-image-shadow"></div>
           <span>{{ category.name }}</span>
         </div>
-
       </ng-template>
-      <div class="tab_content">
 
-        <div class="category-desc-wr justify-content-md-center">
-          <span class="category-Name">{{ category.name }}</span>
-          <span class="category-Description">{{ category.description }}</span>
+      <div class="tab-body-content">
+
+        <div class="category-desc-wr">
+          <p class="category-Name">{{ category.name }}</p>
+          <p class="category-Description" fxFlexAlign="center center">{{ category.description }}</p>
         </div>
 
-        <div class="row justify-content-md-center">
-          <div class="h-100 col-5" *ngFor="let menuItem of category.menuItems">
+        <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayoutAlign="center">
+          <div fxFlexAlign="start" *ngFor="let menuItem of category.menuItems">
             <app-item-card [MenuItem]="menuItem"></app-item-card>
           </div>
         </div>
@@ -29,6 +29,14 @@
     </mat-tab>
   </div>
 </mat-tab-group>
+
+<button mat-fab class="cart_basket" *ngIf="cartItemCount > 0" [routerLink]="'/order'"
+        matTooltip="you have added {{cartItemCount }} items to your order">
+
+  <mat-icon matBadge="{{cartItemCount }}" matBadgeColor="accent">
+    shopping_basket
+  </mat-icon>
+</button>
 
 
 

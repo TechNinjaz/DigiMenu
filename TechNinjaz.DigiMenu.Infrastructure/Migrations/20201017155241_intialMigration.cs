@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
 {
-    public partial class intitialCreation : Migration
+    public partial class intialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -237,8 +237,10 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
                     ItemImageUrl = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(nullable: false),
+                    IsOnASpecial = table.Column<bool>(nullable: false),
+                    SpecialPrice = table.Column<decimal>(nullable: false),
                     MenuCategoryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -258,12 +260,13 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    WaiterIdId = table.Column<int>(nullable: false),
+                    WaiterIdId = table.Column<int>(nullable: true),
                     CustomerId = table.Column<int>(nullable: true),
                     StatusId = table.Column<int>(nullable: false),
                     OrderAmount = table.Column<decimal>(nullable: false),
                     PaidAmount = table.Column<decimal>(nullable: false),
-                    PaymentMethodId = table.Column<int>(nullable: false)
+                    GratuityAmount = table.Column<decimal>(nullable: false),
+                    PaymentMethodId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -279,7 +282,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                         column: x => x.PaymentMethodId,
                         principalTable: "PaymentMethod",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Order_OrderStatus_StatusId",
                         column: x => x.StatusId,
@@ -291,7 +294,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                         column: x => x.WaiterIdId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

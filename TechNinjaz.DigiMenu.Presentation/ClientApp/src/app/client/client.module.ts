@@ -8,11 +8,19 @@ import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {OrderDetailComponent} from './order-detail/order-detail.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ItemOptionsComponent} from './item-options/item-options.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     ItemCardComponent,
+    OrderDetailComponent,
+    ItemOptionsComponent,
   ],
   imports: [
     CommonModule,
@@ -21,9 +29,13 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    FlexLayoutModule,
+    MatBadgeModule,
+    MatTooltipModule,
+    MatDialogModule
   ],
-  providers: [ ]
+  providers: []
 })
 export class ClientModule {
 }

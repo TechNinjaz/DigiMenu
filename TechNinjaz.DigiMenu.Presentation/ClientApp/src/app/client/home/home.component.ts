@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {IMenuCategory} from '../../shared/model/menu-category';
 import {MenuCategoryService} from '../../shared/service/menu-category.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ItemOptionsComponent} from '../item-options/item-options.component';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +13,13 @@ export class HomeComponent implements OnInit {
 
   menuCategories: IMenuCategory[] = [];
   menuCategory: IMenuCategory;
+  cartItemCount: number;
 
-  constructor(private categoryService: MenuCategoryService) {
+  constructor(private categoryService: MenuCategoryService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
+    this.cartItemCount = 5;
     this.getMenuCategories();
   }
 
@@ -30,7 +34,8 @@ export class HomeComponent implements OnInit {
     this.categoryService.getCategoryList()
       .subscribe((categories: IMenuCategory[]) => {
         this.menuCategories = categories;
-        this.menuCategories.sort()
       });
   }
+
+
 }

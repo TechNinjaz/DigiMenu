@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using TechNinjaz.DigiMenu.Core.Entities;
 
-namespace TechNinjaz.DigiMenu.Core.Entities
+namespace TechNinjaz.DigiMenu.Presentation.ModelView
 {
-    [Table(nameof(Order))]
-    public class Order :BaseEntity
+    public class OrderModel 
     {
-        public User WaiterId { get; set; }
-        public User Customer { get; set; }
+        public UserModel WaiterId { get; set; }
+        public UserModel Customer { get; set; }
         [Required]   
         public OrderStatus Status { get; set; }
         [Required]   
@@ -20,6 +18,7 @@ namespace TechNinjaz.DigiMenu.Core.Entities
         public decimal PaidAmount { get; set; }
         public decimal GratuityAmount { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
-        public IEnumerable<OrderDetail> OrderDetails { get; set; }
+        public IEnumerable<OrderDetailModel> OrderDetails { get; set; }
+        
     }
 }

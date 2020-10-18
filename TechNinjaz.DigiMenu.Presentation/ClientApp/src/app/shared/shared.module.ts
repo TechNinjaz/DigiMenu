@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {NavigationBarComponent} from './navigation-bar/navigation-bar.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -7,6 +7,10 @@ import {MatListModule} from '@angular/material/list';
 import {RouterModule} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MenuCategoryService} from './service/menu-category.service';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatBadgeModule} from '@angular/material/badge';
+import {FlexLayoutModule} from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +22,10 @@ import {MenuCategoryService} from './service/menu-category.service';
     MatSidenavModule,
     MatListModule,
     RouterModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule,
+    MatBadgeModule,
+    FlexLayoutModule,
   ],
   exports: [
     NavigationBarComponent,
@@ -27,4 +34,5 @@ import {MenuCategoryService} from './service/menu-category.service';
     MenuCategoryService
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

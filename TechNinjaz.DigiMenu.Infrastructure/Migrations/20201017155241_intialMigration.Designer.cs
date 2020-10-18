@@ -9,8 +9,8 @@ using TechNinjaz.DigiMenu.Infrastructure.Context;
 namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20200920111749_intitialCreation")]
-    partial class intitialCreation
+    [Migration("20201017155241_intialMigration")]
+    partial class intialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -175,6 +175,9 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsOnASpecial")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("ItemImageUrl")
                         .HasColumnType("TEXT");
 
@@ -182,6 +185,9 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("SpecialPrice")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
@@ -204,19 +210,22 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                     b.Property<int?>("CustomerId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<decimal>("GratuityAmount")
+                        .HasColumnType("TEXT");
+
                     b.Property<decimal>("OrderAmount")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("PaidAmount")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PaymentMethodId")
+                    b.Property<int?>("PaymentMethodId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("WaiterIdId")
+                    b.Property<int?>("WaiterIdId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -469,9 +478,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
 
                     b.HasOne("TechNinjaz.DigiMenu.Core.Entities.PaymentMethod", "PaymentMethod")
                         .WithMany()
-                        .HasForeignKey("PaymentMethodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PaymentMethodId");
 
                     b.HasOne("TechNinjaz.DigiMenu.Core.Entities.OrderStatus", "Status")
                         .WithMany()
@@ -481,9 +488,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
 
                     b.HasOne("TechNinjaz.DigiMenu.Core.Entities.User", "WaiterId")
                         .WithMany()
-                        .HasForeignKey("WaiterIdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("WaiterIdId");
                 });
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Core.Entities.OrderDetail", b =>

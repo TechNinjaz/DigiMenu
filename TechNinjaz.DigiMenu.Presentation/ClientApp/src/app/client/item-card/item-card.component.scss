@@ -1,10 +1,13 @@
 .item-card {
-  width: 200px;
-  margin: 8px;
-  box-shadow: 3px 3px 3px 0  #333
+  width: 210px;
+  margin-left: 8px !important;
+  margin-right: 8px !important;
+  box-shadow: 3px 3px 3px 0 #333;
+  background-color: #ececec;
 }
-.item-card > img{
-  height: 40%;
+
+.item-card > img {
+  border-radius: 6px;
 }
 
 .menu-item-description {
@@ -12,12 +15,11 @@
   font-weight: normal;
   font-size: .9em;
   line-height: 1.5em;
-  height: 90px;
+  height: 60px;
 }
-.menu-item-price{
+.menu-item-price {
   float: right;
   font-weight: bold;
   font-family: arial, serif;
-  margin-top: -30px;
 }
 
