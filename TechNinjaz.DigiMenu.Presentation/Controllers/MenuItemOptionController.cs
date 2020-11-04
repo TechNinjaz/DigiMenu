@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechNinjaz.DigiMenu.Core.Entities;
 using TechNinjaz.DigiMenu.Core.Interfaces;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
+    [AllowAnonymous]
     public class MenuItemOptionController : ApiBaseController
     {
         private readonly IGenericService<MenuItemOption> _optionService;

@@ -9,7 +9,7 @@ using TechNinjaz.DigiMenu.Presentation.ModelView;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
-    
+    [AllowAnonymous]
     public class MenuItemController : ApiBaseController 
     {
         private readonly IGenericService<MenuItem> _menuItemService;

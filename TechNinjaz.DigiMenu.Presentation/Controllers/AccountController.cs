@@ -28,7 +28,7 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet, Authorize]
+        [HttpGet]
         public async Task<ActionResult<LoginResponseModel>> GetCurrentUser()
         {
             var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
@@ -36,20 +36,20 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             return GetLoginResponseModel(user);
         }
 
-        [HttpGet("{email}")]
+        [HttpGet("{email}"), AllowAnonymous]
         public async Task<ActionResult<UserProfileModel>> GetUserProfile(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             return _mapper.Map<UserProfileModel>(user.Profile);
         }
 
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public async Task<ActionResult<bool>> EmailExistAsync([FromBody] string email)
         {
             return await _userManager.FindByEmailAsync(email) != null;
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public async Task<ActionResult<LoginResponseModel>> RegisterUser(RegisterModel registerModel)
         {
             var user = new AuthUser
@@ -69,7 +69,7 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             return GetLoginResponseModel(user);
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public async Task<ActionResult<LoginResponseModel>> Login(LoginModel loginModel)
         {
             var user = await _userManager.FindByEmailAsync(loginModel.Email);
