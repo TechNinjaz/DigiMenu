@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using TechNinjaz.DigiMenu.Core.Entities;
+using TechNinjaz.DigiMenu.Core.Entities.OrderEntities;
 using TechNinjaz.DigiMenu.Core.Interfaces;
 using TechNinjaz.DigiMenu.Presentation.ModelView;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
-    public class OrderController : BaseApiController<OrderModel>
+    public class OrderController : ApiBaseController
     {
         private readonly IGenericService<Order> _orderService;
         private readonly IMapper _mapper;
@@ -18,25 +20,28 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             _mapper = mapper;
         }
 
-        public override async Task<OrderModel> Create(OrderModel entity)
+        [HttpPost]
+        public  async Task<OrderModel> Create(OrderModel entity)
         {
             var order = await MapOrderAsync(entity);
             return _mapper.Map<OrderModel>(order);
         }
-
-        public override async Task<OrderModel> Update(OrderModel entity)
+        [HttpPost]
+        public  async Task<OrderModel> Update(OrderModel entity)
         {
             var order = await MapOrderAsync(entity, true);
             return _mapper.Map<OrderModel>(order);
         }
 
-        public override async Task<OrderModel> GetById(int id)
+        [HttpGet("{id}")]
+        public async Task<OrderModel> GetById(int id)
         {
             var order = await _orderService.GetByIdAsync(id);
             return _mapper.Map<OrderModel>(order);
         }
+        [HttpGet("{userId}")]
 
-        public override async Task<IReadOnlyList<OrderModel>> GetAll()
+        public async Task<IReadOnlyList<OrderModel>> GetAllUserOrders(int userId)
         {
             var orders = await _orderService.GetAllAsync();
             return _mapper.Map<IReadOnlyList<OrderModel>>(orders);

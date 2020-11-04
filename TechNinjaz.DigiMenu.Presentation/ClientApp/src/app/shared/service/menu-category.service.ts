@@ -10,10 +10,10 @@ import {IMenuCategory} from '../model/menu-category';
 })
 export class MenuCategoryService {
 
-  BaseUrl: string;
+  private BaseUrl: string;
 
   constructor(private http: HttpClient) {
-    this.BaseUrl = AppUtils.BASE_API_URL + '/api/MenuCategory/';
+    this.BaseUrl = AppUtils.BASE_API_URL + 'MenuCategory/';
   }
 
   getCategory(id: number): Observable<any> {

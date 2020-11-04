@@ -2,6 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IMenuItem} from '../../shared/model/menu-item';
 import {ItemOptionsComponent} from '../item-options/item-options.component';
 import {MatDialog} from '@angular/material/dialog';
+import {OrderService} from '../../shared/service/order.service';
+import {IOrder} from '../../shared/model/order';
+import {IOrderDetail} from '../../shared/model/order-detail';
+import {LocalStorageService} from '../../shared/service/local-storage.service';
+import {AppUtils} from '../../shared/util/AppUtils';
 
 @Component({
   selector: 'app-item-card',
@@ -12,19 +17,47 @@ export class ItemCardComponent implements OnInit {
 
   @Input()
   MenuItem: IMenuItem;
+  order: IOrder;
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private localStorageService: LocalStorageService) {
   }
 
   ngOnInit(): void {
+    this.order = {} as IOrder;
+    this.order.orderDetails = [];
+    this.order.customerId = 1;
+    this.order.waiterId = 2;
+    // this.order.paymentMethodId = 1;
+    this.order.orderStatusId = 1;
+    console.log('on it called');
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(ItemOptionsComponent);
+    const dialogRef = this.dialog.open(ItemOptionsComponent, {
+      width: '60%',
+      data: this.MenuItem,
+    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((orderDetail: IOrderDetail) => {
+      console.log(orderDetail);
+      if (orderDetail != null && orderDetail?.menuItemId > 0) {
+        (this.orderExist()) ? this.updateOrder(orderDetail) : this.addOrder(orderDetail);
+      }
     });
   }
 
+  addOrder(orderDetail: IOrderDetail): void {
+    this.order.orderDetails.push(orderDetail);
+    this.localStorageService.addItem(AppUtils.CART_KEY, this.order);
+  }
+
+  updateOrder(orderDetail: IOrderDetail): void {
+    this.order = this.localStorageService.getItem(AppUtils.CART_KEY);
+    this.order.orderDetails.push(orderDetail);
+    this.localStorageService.addItem(AppUtils.CART_KEY, this.order);
+  }
+
+  orderExist(): boolean {
+    return this.localStorageService.getItem(AppUtils.CART_KEY) != null;
+  }
 }

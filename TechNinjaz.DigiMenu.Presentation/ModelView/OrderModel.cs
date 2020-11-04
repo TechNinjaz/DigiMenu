@@ -1,23 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using TechNinjaz.DigiMenu.Core.Entities;
 
 namespace TechNinjaz.DigiMenu.Presentation.ModelView
 {
-    public class OrderModel 
+    public class OrderModel : BaseModel
     {
-        public UserModel WaiterId { get; set; }
-        public UserModel Customer { get; set; }
+        public int WaiterId { get; set; }
+        public int CustomerId { get; set; }
         [Required]   
-        public OrderStatus Status { get; set; }
+        public int OrderStatusId { get; set; }
         [Required]   
         public decimal OrderAmount { get; set; }
         [Required] 
         [DefaultValue(double.NaN)]
         public decimal PaidAmount { get; set; }
         public decimal GratuityAmount { get; set; }
-        public PaymentMethod PaymentMethod { get; set; }
+        public int? PaymentMethodId { get; set; }
         public IEnumerable<OrderDetailModel> OrderDetails { get; set; }
         
     }

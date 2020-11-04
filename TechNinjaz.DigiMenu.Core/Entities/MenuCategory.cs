@@ -11,7 +11,7 @@ namespace TechNinjaz.DigiMenu.Core.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string CategoryImageUrl { get; set; }
-        public IEnumerable<MenuItem> MenuItems { get; set; }
+        public virtual IEnumerable<MenuItem> MenuItems { get; set; }
         
     }
 }

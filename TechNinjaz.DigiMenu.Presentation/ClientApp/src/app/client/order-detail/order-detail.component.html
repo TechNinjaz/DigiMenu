@@ -1,1 +1,30 @@
-  <h1 fxLayout="row" fxLayoutAlign="center"> order component is working test </h1>
+<div fxLayout="row" fxLayoutAlign="center" fxLayout.lt-md="column" fxLayoutAlign.lt-md="space-around none" >
+  <div fxFlex="70%">
+    <table mat-table [dataSource]="orderDetails">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> price</th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+
+      <!-- action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> action</th>
+        <td mat-cell *matCellDef="let element"> {{element.action}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div fxFlex="25%" class="price_card">
+    <mat-card fxLayoutAlign="start">Total Price: R500</mat-card>
+  </div>
+</div>
+

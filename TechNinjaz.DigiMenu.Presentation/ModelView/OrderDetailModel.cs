@@ -1,10 +1,10 @@
-﻿using TechNinjaz.DigiMenu.Core.Entities;
+﻿using System.Collections.Generic;
 
 namespace TechNinjaz.DigiMenu.Presentation.ModelView
 {
-    public class OrderDetailModel
+    public class OrderDetailModel : BaseModel
     {
-        public OrderModel Order { get; set; }
-        public MenuItem MenuItem { get; set; }
+        public int MenuItemId { get; set; }
+        public IReadOnlyList<SelectedOptionModel> SelectedOptions { get; set; } 
     }
 }

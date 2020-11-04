@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TechNinjaz.DigiMenu.Core.Entities
+namespace TechNinjaz.DigiMenu.Presentation.ModelView
 {
-    [Table(nameof(OrderStatus))]
-    public class OrderStatus : BaseEntity
+    public class MenuCategoryModel : BaseModel
     {
         [Required]   
         public string Name { get; set; }
         public string Description { get; set; }
+        public string CategoryImageUrl { get; set; }
     }
 }

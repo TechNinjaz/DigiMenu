@@ -3,6 +3,8 @@ export interface IMenuItem {
   createdAt: string;
   title: string;
   description: string;
-  price: number;
   itemImageUrl: string;
+  price: number;
+  isActive: boolean;
+  menuCategoryId: number;
 }

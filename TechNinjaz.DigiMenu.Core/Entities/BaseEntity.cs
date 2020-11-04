@@ -1,4 +1,5 @@
 ﻿using System;
+using Castle.Components.DictionaryAdapter;
 using TechNinjaz.DigiMenu.Core.Interfaces;
 
 namespace TechNinjaz.DigiMenu.Core.Entities

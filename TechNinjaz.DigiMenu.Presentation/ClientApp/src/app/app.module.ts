@@ -16,7 +16,7 @@ import {AdminModule} from './admin/admin.module';
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -27,7 +27,7 @@ import {AdminModule} from './admin/admin.module';
     AdminModule
   ],
   providers: [
-    Title
+    Title,
   ],
   bootstrap: [AppComponent]
 })

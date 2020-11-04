@@ -1,5 +1,5 @@
 import {Component,  OnInit} from '@angular/core';
-import {environment} from '../../../environments/environment';
+import {AppUtils} from '../util/AppUtils';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -12,7 +12,7 @@ export class NavigationBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.toggleActive = false;
-    this.title = environment.APP_TITLE;
+    this.title = AppUtils.TITLE;
   }
 
   constructor() {

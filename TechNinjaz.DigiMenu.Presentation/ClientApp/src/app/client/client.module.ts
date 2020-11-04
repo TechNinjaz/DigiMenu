@@ -14,6 +14,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {OrderDetailComponent} from './order-detail/order-detail.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ItemOptionsComponent} from './item-options/item-options.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatListModule} from '@angular/material/list';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import {ItemOptionsComponent} from './item-options/item-options.component';
     FlexLayoutModule,
     MatBadgeModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatListModule,
+    FormsModule,
   ],
   providers: []
 })

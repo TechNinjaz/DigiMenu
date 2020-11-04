@@ -6,7 +6,6 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {RouterModule} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
-import {MenuCategoryService} from './service/menu-category.service';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -30,9 +29,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
   exports: [
     NavigationBarComponent,
   ],
-  providers: [
-    MenuCategoryService
-  ]
+  providers: []
 })
 export class SharedModule {
 }

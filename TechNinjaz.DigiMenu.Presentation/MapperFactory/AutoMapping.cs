@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using TechNinjaz.DigiMenu.Core.Entities;
+using TechNinjaz.DigiMenu.Core.Entities.Identity;
+using TechNinjaz.DigiMenu.Core.Entities.OrderEntities;
 using TechNinjaz.DigiMenu.Presentation.ModelView;
 
 namespace TechNinjaz.DigiMenu.Presentation.MapperFactory
@@ -8,16 +10,18 @@ namespace TechNinjaz.DigiMenu.Presentation.MapperFactory
     {
         public AutoMapping()
         {
-            CreateMap<User, UserModel>().ReverseMap();
-            CreateMap<Order, OrderModel>().ReverseMap();
+            CreateMap<MenuCategory, MenuCategoryModel>().ReverseMap();
+            CreateMap<MenuItem, MenuItemModel>().ReverseMap();
+            CreateMap<UserProfile, UserProfileModel>().ReverseMap();
             CreateMap<OrderDetail, OrderDetailModel>().ReverseMap();
-            // CreateMap<Shift, ShiftModel>().ReverseMap();
-            // CreateMap<Menu, MenuModel>().ReverseMap();
-            // CreateMap<MenuItem, MenuItemModel>().ReverseMap();
-            // CreateMap<StaffUser, StaffUserModel>().ReverseMap();
-            // CreateMap<OrderStatus, OrderStatusModel>().ReverseMap();
-            // CreateMap<SittingTable, SittingTableModel>().ReverseMap();
-            // CreateMap<PaymentMethod, PaymentMethodModel>().ReverseMap(); 
+            CreateMap<SelectedMenuOption, SelectedOptionModel>().ReverseMap();
+            CreateMap<PaymentMethod, PaymentMethodModel>().ReverseMap();
+            CreateMap<Order, OrderModel>().ReverseMap();
+            // .ForMember(dest => dest.CustomerId, opt
+            //     => opt.MapFrom(src => src.Customer.Id))
+            // .ForMember(dest => dest.WaiterId, opt
+            //     => opt.MapFrom(src => src.Waiter.Id))
+            // .ReverseMap();
         }
     }
 }

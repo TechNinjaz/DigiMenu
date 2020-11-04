@@ -4,7 +4,11 @@ import {environment} from '../../../environments/environment';
 
 export class AppUtils {
 
-  public static BASE_API_URL: any = environment.BASE_API_URL;
+  public static BASE_API_URL: any = environment.BASE_API_URL + '/api/';
+  public static TITLE = environment.APP_TITLE;
+  public static CART_KEY = 'CURRENT_ORDER';
+  public static STORAGE_ADD_TYPE_KEY = 'ADD';
+  public static STORAGE_REMOVE_TYPE_KEY = 'REMOVE';
 
   public static httpOptions = {
     headers: new HttpHeaders({
@@ -17,7 +21,7 @@ export class AppUtils {
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.errors[0]?.message}`;
     }
     console.log(errorMessage);
     return throwError(errorMessage);

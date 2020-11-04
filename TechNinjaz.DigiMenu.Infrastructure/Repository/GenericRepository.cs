@@ -32,12 +32,12 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Repository
         }
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            return await EagerLoadingQueryable().ToListAsync();
+            return await _context.Set<T>().AsQueryable().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await EagerLoadingQueryable().SingleOrDefaultAsync(s=>s.Id.Equals(id));
+            return await  _context.Set<T>().SingleOrDefaultAsync(s=>s.Id.Equals(id));
         }
         
         

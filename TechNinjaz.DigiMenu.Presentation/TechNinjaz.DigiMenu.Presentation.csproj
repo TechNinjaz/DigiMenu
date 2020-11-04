@@ -33,6 +33,15 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="ClientApp\e2e\tsconfig.json" />
+      <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Shared\_LoginPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Pages\Error.cshtml" />
+      <UpToDateCheckInput Remove="Pages\Shared\_LoginPartial.cshtml" />
+      <UpToDateCheckInput Remove="Pages\_ViewImports.cshtml" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
