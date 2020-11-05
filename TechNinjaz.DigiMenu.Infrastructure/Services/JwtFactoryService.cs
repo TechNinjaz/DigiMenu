@@ -19,7 +19,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Services
         public JwtFactoryService(IConfiguration config)
         {
             _config = config;
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:key"]));
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:key"]));
         }
 
         string IJwtFactory.CreatedToken(AuthUser user)
@@ -27,15 +27,17 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Services
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.GivenName, user.DisplayName)
+                new Claim(JwtRegisteredClaimNames.GivenName, user.DisplayName),
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
+                
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature),
-                Issuer = _config["Token:Issuer"]
+                Audience = _config["Jwt:Audience"],
+                Issuer = _config["Jwt:Issuer"]
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();

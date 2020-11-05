@@ -22,7 +22,7 @@ namespace TechNinjaz.DigiMenu.Presentation
             services.AddAutoMapper(typeof(Startup));
             services.InjectServicesDependencies();
             services.AddDefaultDatabaseContext(_config);
-            services.AddIdentityServices(_config);
+            services.AddIdentityWithJwt(_config);
             services.AddControllersWithViews();
             services.AddSwaggerDoc(_config);
             services.AddSpaStaticFiles(config =>

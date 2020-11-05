@@ -17,11 +17,19 @@ namespace TechNinjaz.DigiMenu.Presentation.MapperFactory
             CreateMap<SelectedMenuOption, SelectedOptionModel>().ReverseMap();
             CreateMap<PaymentMethod, PaymentMethodModel>().ReverseMap();
             CreateMap<Order, OrderModel>().ReverseMap();
-            // .ForMember(dest => dest.CustomerId, opt
-            //     => opt.MapFrom(src => src.Customer.Id))
-            // .ForMember(dest => dest.WaiterId, opt
-            //     => opt.MapFrom(src => src.Waiter.Id))
-            // .ReverseMap();
+            
+            CreateMap<AuthUser, LoginResponseModel>().ReverseMap();
+            CreateMap<RegisterUserModel, AuthUser>()
+                .ForMember(dest => dest.DisplayName, opt =>
+                    opt.MapFrom(src => src.FistName + " " + src.LastName))
+                .ForMember(dest => dest.UserName, opt =>
+                    opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.Profile, opt =>
+                    opt.MapFrom(src => new UserProfile
+                    {
+                        FistName = src.FistName,
+                        LastName = src.LastName,
+                    })).ReverseMap();
         }
     }
 }

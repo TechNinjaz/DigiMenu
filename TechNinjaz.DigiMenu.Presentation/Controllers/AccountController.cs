@@ -28,7 +28,7 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<LoginResponseModel>> GetCurrentUser()
         {
             var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
@@ -36,58 +36,55 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             return GetLoginResponseModel(user);
         }
 
-        [HttpGet("{email}"), AllowAnonymous]
+        [HttpGet("{email}"),Authorize]
         public async Task<ActionResult<UserProfileModel>> GetUserProfile(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             return _mapper.Map<UserProfileModel>(user.Profile);
         }
 
-        [HttpGet, AllowAnonymous]
+        [HttpGet]
         public async Task<ActionResult<bool>> EmailExistAsync([FromBody] string email)
         {
             return await _userManager.FindByEmailAsync(email) != null;
         }
 
-        [HttpPost, AllowAnonymous]
-        public async Task<ActionResult<LoginResponseModel>> RegisterUser(RegisterModel registerModel)
+        [HttpPost]
+        public async Task<ActionResult<LoginResponseModel>> RegisterUser(RegisterUserModel registerUserModel)
         {
-            var user = new AuthUser
-            {
-                DisplayName = registerModel.FistName + " " + registerModel.LastName,
-                Email = registerModel.Email,
-                UserName = registerModel.Email,
-                Profile = new UserProfile
-                {
-                    FistName = registerModel.FistName,
-                    LastName = registerModel.LastName
-                }
-            };
-            var registeredUser = await _userManager.CreateAsync(user, registerModel.Password);
+            var user = _mapper.Map<AuthUser>(registerUserModel);
+            var registeredUser = await _userManager.CreateAsync(user, registerUserModel.Password);
             if (!registeredUser.Succeeded) return BadRequest(registeredUser.Errors.ToString());
 
             return GetLoginResponseModel(user);
         }
 
-        [HttpPost, AllowAnonymous]
-        public async Task<ActionResult<LoginResponseModel>> Login(LoginModel loginModel)
+        [HttpPost]
+        public async Task<ActionResult<LoginResponseModel>> Login(UserLoginModel userLoginModel)
         {
-            var user = await _userManager.FindByEmailAsync(loginModel.Email);
+            var user = await _userManager.FindByEmailAsync(userLoginModel.Email);
             if (user == null) return Unauthorized();
-            var isAuth = await _signInManager.CheckPasswordSignInAsync(user, loginModel.Password, false);
+            var isAuth = await _signInManager.CheckPasswordSignInAsync(user, userLoginModel.Password, false);
             if (!isAuth.Succeeded) return Unauthorized();
 
             return GetLoginResponseModel(user);
         }
+        
+        [HttpPost("{email}")]
+        public async Task<ActionResult<bool>> Logout(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null) return Unauthorized();
+            await _signInManager.SignOutAsync();
+            return true;
+        }
+
 
         private LoginResponseModel GetLoginResponseModel(AuthUser user)
         {
-            return new LoginResponseModel
-            {
-                Email = user.Email,
-                Token = _jwtFactory.CreatedToken(user),
-                DisplayName = user.DisplayName
-            };
+            var loginResp = _mapper.Map<LoginResponseModel>(user);
+            loginResp.Token = _jwtFactory.CreatedToken(user);
+            return loginResp;
         }
     }
 }
