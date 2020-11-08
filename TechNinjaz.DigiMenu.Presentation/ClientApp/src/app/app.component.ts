@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {AppUtils} from './shared/util/AppUtils';
+import {AppConstUtils} from './shared/util/AppConstUtils';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   public constructor(private titleService: Title ) { }
 
   ngOnInit(): void {
-    this.title = AppUtils.TITLE;
+    this.title = AppConstUtils.TITLE;
     this.titleService.setTitle(this.title);
   }
 

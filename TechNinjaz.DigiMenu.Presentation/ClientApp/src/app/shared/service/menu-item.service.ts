@@ -1,24 +1,27 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AppUtils} from '../util/AppUtils';
+import {AppConstUtils} from '../util/AppConstUtils';
 import {Observable} from 'rxjs';
 import {IMenuCategory} from '../model/menu-category';
-import {catchError, retry} from 'rxjs/operators';
+import {IMenuItem} from '../model/menu-item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuItemService {
 
-  private BaseUrl: string;
+  private readonly BaseUrl: string;
 
   constructor(private http: HttpClient) {
-    this.BaseUrl = AppUtils.BASE_API_URL + 'MenuItem/';
+    this.BaseUrl = AppConstUtils.BASE_API_URL + 'MenuItem/';
   }
 
-  getByItemsCategoryId(categoryId: number): Observable<any> {
-    return this.http.get<IMenuCategory>(this.BaseUrl + `GetByCategoryId/${categoryId}`, AppUtils.httpOptions)
-      .pipe(retry(1), catchError(AppUtils.errorHandler));
+  getItemsByCategoryId(categoryId: number): Observable<IMenuItem[]> {
+    return this.http.get<IMenuItem[]>(this.BaseUrl + `GetByCategoryId/${categoryId}`);
+  }
+
+  getMenuItemId(id: number): Observable<IMenuItem> {
+    return this.http.get<IMenuItem>(this.BaseUrl + `GetById/${id}`);
   }
 
 }

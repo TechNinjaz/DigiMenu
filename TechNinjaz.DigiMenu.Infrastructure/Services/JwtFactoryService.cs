@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Text.Unicode;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using TechNinjaz.DigiMenu.Core.Entities.Identity;
@@ -34,7 +33,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Services
             {
                 
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),
+                Expires =  DateTime.Now.AddHours(1),
                 SigningCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature),
                 Audience = _config["Jwt:Audience"],
                 Issuer = _config["Jwt:Issuer"]

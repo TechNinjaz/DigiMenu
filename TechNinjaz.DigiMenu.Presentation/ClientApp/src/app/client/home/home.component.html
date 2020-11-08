@@ -12,12 +12,11 @@
         <div class="tab-header">
           <img src="{{category.categoryImageUrl }}" alt="{{ category.name }} image">
           <div class="tab-image-shadow"></div>
-          <span>{{ category.name }}</span>
+          <span>{{ category.name | titlecase }}</span>
         </div>
       </ng-template>
 
       <div class="tab-body-content">
-
         <div class="category-desc-wr">
           <p class="category-Name">{{ category.name }}</p>
           <p class="category-Description" fxFlexAlign="center center">{{ category.description }}</p>
@@ -33,14 +32,15 @@
   </div>
 </mat-tab-group>
 
-<button mat-fab class="cart_basket" *ngIf="cartItemCount > 0" [routerLink]="'/order'"
-        matTooltip="you have added {{cartItemCount }} items to your order">
+<ng-container>
+  <button mat-fab class="cart_basket" *ngIf="cartItemCount > 0" [routerLink]="'/order'"
+          matTooltip="you have added {{cartItemCount }} items to your order">
 
-  <mat-icon matBadge="{{cartItemCount }}" matBadgeColor="accent">
-    shopping_basket
-  </mat-icon>
-</button>
-
+    <mat-icon matBadge="{{cartItemCount }}" matBadgeColor="accent">
+      shopping_basket
+    </mat-icon>
+  </button>
+</ng-container>
 
 
 

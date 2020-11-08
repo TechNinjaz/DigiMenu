@@ -11,7 +11,7 @@ using Microsoft.OpenApi.Models;
 
 namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
 {
-    public static class SwaggerExtension
+    public static class AngularAndSwaggerExtensions
     {
         public static void AddSwaggerDoc(this IServiceCollection services, IConfiguration config)
         {

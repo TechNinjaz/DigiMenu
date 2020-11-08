@@ -8,6 +8,7 @@ using TechNinjaz.DigiMenu.Core.Interfaces;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
+    [AllowAnonymous]
     public class MenuItemOptionController : ApiBaseController
     {
         private readonly IGenericService<MenuItemOption> _optionService;

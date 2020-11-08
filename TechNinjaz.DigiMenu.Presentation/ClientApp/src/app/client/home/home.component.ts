@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IMenuCategory} from '../../shared/model/menu-category';
 import {MenuCategoryService} from '../../shared/service/menu-category.service';
-import {AppUtils} from '../../shared/util/AppUtils';
+import {AppConstUtils} from '../../shared/util/AppConstUtils';
 import {IMenuItem} from '../../shared/model/menu-item';
 import {MenuItemService} from '../../shared/service/menu-item.service';
 import {LocalStorageService} from '../../shared/service/local-storage.service';
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     this.selectedIndex = 0;
     this.getMenuCategories();
     this.menuCategories = [];
-    this.title = AppUtils.TITLE;
+    this.title = AppConstUtils.TITLE;
     this.countCartItems();
   }
 
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   getByItemsCategoryId(id: number): void {
-    this.itemService.getByItemsCategoryId(id)
+    this.itemService.getItemsByCategoryId(id)
       .subscribe((items: IMenuItem[]) => {
         this.menuItems = items;
       });
@@ -55,12 +55,15 @@ export class HomeComponent implements OnInit {
   }
 
   private countCartItems(): void {
-    this.localStorageService.storageChange.subscribe(item => {
-      console.log(item);
-      if (item.key === AppUtils.CART_KEY) {
-        const Order: IOrder = item.value;
+    const cart: IOrder = this.localStorageService.getItem(AppConstUtils.CART_KEY);
+    this.cartItemCount = cart?.orderDetails?.length;
+
+    this.localStorageService.storageChange.subscribe(storeValue => {
+      if (storeValue?.key === AppConstUtils.CART_KEY) {
+        const Order: IOrder = storeValue.value;
         this.cartItemCount = Order?.orderDetails?.length;
       }
     });
   }
+
 }

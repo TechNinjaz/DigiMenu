@@ -356,17 +356,13 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId")
-                        .IsUnique()
-                        .HasFilter("[CustomerId] IS NOT NULL");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("OrderStatusId");
 
                     b.HasIndex("PaymentMethodId");
 
-                    b.HasIndex("WaiterId")
-                        .IsUnique()
-                        .HasFilter("[WaiterId] IS NOT NULL");
+                    b.HasIndex("WaiterId");
 
                     b.ToTable("Order");
                 });
@@ -572,9 +568,8 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
             modelBuilder.Entity("TechNinjaz.DigiMenu.Core.Entities.OrderEntities.Order", b =>
                 {
                     b.HasOne("TechNinjaz.DigiMenu.Core.Entities.Identity.UserProfile", "Customer")
-                        .WithOne()
-                        .HasForeignKey("TechNinjaz.DigiMenu.Core.Entities.OrderEntities.Order", "CustomerId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("TechNinjaz.DigiMenu.Core.Entities.OrderEntities.OrderStatus", "OrderStatus")
                         .WithMany()
@@ -587,9 +582,8 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                         .HasForeignKey("PaymentMethodId");
 
                     b.HasOne("TechNinjaz.DigiMenu.Core.Entities.Identity.UserProfile", "Waiter")
-                        .WithOne()
-                        .HasForeignKey("TechNinjaz.DigiMenu.Core.Entities.OrderEntities.Order", "WaiterId")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .WithMany()
+                        .HasForeignKey("WaiterId");
                 });
 
             modelBuilder.Entity("TechNinjaz.DigiMenu.Core.Entities.OrderEntities.OrderDetail", b =>

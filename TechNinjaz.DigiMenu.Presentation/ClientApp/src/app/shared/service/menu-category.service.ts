@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AppUtils} from '../util/AppUtils';
+import {AppConstUtils} from '../util/AppConstUtils';
 import {Observable} from 'rxjs';
-import {catchError, retry} from 'rxjs/operators';
 import {IMenuCategory} from '../model/menu-category';
 
 @Injectable({
@@ -10,19 +9,17 @@ import {IMenuCategory} from '../model/menu-category';
 })
 export class MenuCategoryService {
 
-  private BaseUrl: string;
+  private readonly BaseUrl: string;
 
   constructor(private http: HttpClient) {
-    this.BaseUrl = AppUtils.BASE_API_URL + 'MenuCategory/';
+    this.BaseUrl = AppConstUtils.BASE_API_URL + 'MenuCategory/';
   }
 
-  getCategory(id: number): Observable<any> {
-    return this.http.get<IMenuCategory>(this.BaseUrl + `GetById/${id}`, AppUtils.httpOptions)
-      .pipe(retry(1), catchError(AppUtils.errorHandler));
+  getCategory(id: number): Observable<IMenuCategory> {
+    return this.http.get<IMenuCategory>(this.BaseUrl + `GetById/${id}`);
   }
 
-  getCategoryList(): Observable<any> {
-    return this.http.get<IMenuCategory[]>(this.BaseUrl + 'GetAll', AppUtils.httpOptions)
-      .pipe(retry(1), catchError(AppUtils.errorHandler));
+  getCategoryList(): Observable<IMenuCategory[]> {
+    return this.http.get<IMenuCategory[]>(this.BaseUrl + 'GetAll');
   }
 }

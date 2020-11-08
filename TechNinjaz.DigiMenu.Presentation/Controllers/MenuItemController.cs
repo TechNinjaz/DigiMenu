@@ -9,6 +9,7 @@ using TechNinjaz.DigiMenu.Presentation.ModelView;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
+    [AllowAnonymous]
     public class MenuItemController : ApiBaseController 
     {
         private readonly IGenericService<MenuItem> _menuItemService;
@@ -44,6 +45,13 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
         {
             var cats = await _categoryService.GetByIdAsync(categoryId);
             return _mapper.Map<IReadOnlyList<MenuItemModel>>(cats.MenuItems);
+        }
+        
+        [HttpGet]
+        public async Task<IReadOnlyList<MenuItemModel>> GetAll()
+        {
+            var cats = await _categoryService.GetAllAsync();
+            return _mapper.Map<IReadOnlyList<MenuItemModel>>(cats);
         }
     
         private async Task<MenuItemModel> MapModelAsync(MenuItemModel model, bool isUpdate=false)

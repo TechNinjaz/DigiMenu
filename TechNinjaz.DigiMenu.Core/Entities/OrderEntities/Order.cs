@@ -21,7 +21,9 @@ namespace TechNinjaz.DigiMenu.Core.Entities.OrderEntities
         
         
         public int OrderStatusId { get; set; }
+        [ForeignKey("Waiter")]
         public int? WaiterId { get; set; }
+        [ForeignKey("Customer")]
         public int? CustomerId { get; set; }
         public int? PaymentMethodId { get; set; }
         

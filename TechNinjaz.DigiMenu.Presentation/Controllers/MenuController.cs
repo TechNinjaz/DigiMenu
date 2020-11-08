@@ -9,6 +9,7 @@ using TechNinjaz.DigiMenu.Presentation.ModelView;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
+    [AllowAnonymous]
     public class MenuCategoryController : ApiBaseController
     {
         private readonly IGenericService<MenuCategory> _menuService;

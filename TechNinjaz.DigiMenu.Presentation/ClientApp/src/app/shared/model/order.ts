@@ -11,5 +11,6 @@ export interface IOrder {
   paidAmount: number;
   gratuityAmount: number;
   paymentMethodId: number;
+  createdAt: string;
   orderDetails: IOrderDetail[];
 }

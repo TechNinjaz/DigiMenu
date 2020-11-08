@@ -8,15 +8,15 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
     {
         public static void ConfigTable(this ModelBuilder builder)
         {
-            builder.Entity<Order>()
-                .HasOne(order => order.Waiter)
-                .WithOne()
-                .OnDelete(DeleteBehavior.NoAction);
-            
-            builder.Entity<Order>()
-                .HasOne(order => order.Customer)
-                .WithOne()
-                .OnDelete(DeleteBehavior.NoAction);
+            // builder.Entity<Order>()
+            //     .HasOne(order => order.Waiter)
+            //     .WithOne()
+            //     .OnDelete(DeleteBehavior.NoAction);
+            //
+            // builder.Entity<Order>()
+            //     .HasOne(order => order.Customer)
+            //     .WithOne()
+            //     .OnDelete(DeleteBehavior.NoAction);
 
         }
     }

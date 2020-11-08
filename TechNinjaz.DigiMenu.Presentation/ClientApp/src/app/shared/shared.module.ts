@@ -1,30 +1,25 @@
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NavigationBarComponent} from './navigation-bar/navigation-bar.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
 import {RouterModule} from '@angular/router';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatBadgeModule} from '@angular/material/badge';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {AppMaterialModule} from '../app-material.module';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
+import {GlobalErrorHandler} from "./util/global-error-handler";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {ServerErrorInterceptor} from "./util/server-error-interceptor.service";
 
 
 @NgModule({
   declarations: [
-    NavigationBarComponent
+    NavigationBarComponent,
   ],
   imports: [
     CommonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
     RouterModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatBadgeModule,
     FlexLayoutModule,
+    AppMaterialModule,
+
   ],
   exports: [
     NavigationBarComponent,

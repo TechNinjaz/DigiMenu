@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {AppUtils} from '../util/AppUtils';
+import {AppConstUtils} from '../util/AppConstUtils';
 import {Observable} from 'rxjs';
-import {catchError, retry} from 'rxjs/operators';
 import {IMenuItemOption} from '../model/menu-item-option';
 
 @Injectable({
@@ -10,14 +9,13 @@ import {IMenuItemOption} from '../model/menu-item-option';
 })
 export class MenuOptionService {
 
-  private BaseUrl: string;
+  private readonly BaseUrl: string;
 
   constructor(private http: HttpClient) {
-    this.BaseUrl = AppUtils.BASE_API_URL + 'MenuItemOption/';
+    this.BaseUrl = AppConstUtils.BASE_API_URL + 'MenuItemOption/';
   }
 
-  getMenuOptionsByItemId(temId: number): Observable<any> {
-    return this.http.get<IMenuItemOption[]>(this.BaseUrl + `GetOptionsByItemId/${temId}`, AppUtils.httpOptions)
-      .pipe(retry(1), catchError(AppUtils.errorHandler));
+  getMenuOptionsByItemId(temId: number): Observable<IMenuItemOption[]> {
+    return this.http.get<IMenuItemOption[]>(this.BaseUrl + `GetOptionsByItemId/${temId}`);
   }
 }
