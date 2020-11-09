@@ -1,0 +1,41 @@
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayout.lt-md="column">
+  <div fxFlex="65%">
+    <table class="mat-elevation-z4">
+      <thead>
+      <tr>
+        <ng-container *ngFor="let column of columnsToDisplay">
+          <th scope="col">{{column | titlecase}}</th>
+        </ng-container>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of orderDetails; index as i">
+        <td>
+          {{ order.name }}
+        </td>
+        <td>{{ order.price | currency }}</td>
+        <td>
+          <button mat-button (click)="OnDelete(i)">
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <mat-card fxFlex="25%" fxLayout="column" fxLayoutAlign="start space-around" class="mat-elevation-z4">
+    <mat-card-content>
+      <app-payment-option></app-payment-option>
+
+    </mat-card-content>
+    <mat-card-footer>
+      <ng-container fxLayout="column" fxLayoutAlign="space-around stretch">
+        <button mat-button color="primary">Total Price: {{getTotalCost() | currency }}</button>
+        <button mat-raised-button color="warn" (click)="submitOrder()">{{'place order' | titlecase}}</button>
+        <button mat-raised-button color="accent" (click)="submitOrder()">{{'checkout' | titlecase}}</button>
+      </ng-container>
+    </mat-card-footer>
+  </mat-card>
+
+</div>
+

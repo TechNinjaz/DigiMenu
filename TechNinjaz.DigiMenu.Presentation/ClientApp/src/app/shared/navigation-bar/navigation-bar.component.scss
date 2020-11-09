@@ -1,0 +1,27 @@
+.sidenav-container {
+  flex: 1;
+  .sidenav {
+    min-width: 20%;
+    a {
+      display: block;
+      padding: 6px 24px;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  main {
+    padding: 18px 24px;
+    height: calc(100vh - 100px);
+  }
+}
+
+.rightSidenav_toggle {
+  width: 300px;
+  height: 50px;
+  background-color: #eee;
+}
+
+.menu-button-left .mat-button{
+  line-height: 0 !important;
+}

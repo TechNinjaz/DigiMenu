@@ -1,0 +1,17 @@
+<h2 mat-dialog-title fxLayoutAlign="center"> {{ menuItem.title| titlecase }} Options</h2>
+<div>
+  <mat-dialog-content class="dialog_content">
+    <mat-selection-list [(ngModel)]="selectedOptions" [compareWith]="compareFunction">
+      <mat-list-option *ngFor="let itemOption of itemOptions"
+                       [value]="itemOption"
+                       checkboxPosition="before">
+        {{itemOption.description}}
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="addToBasket()" color="warn">add to Basket</button>
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+  </mat-dialog-actions>
+</div>

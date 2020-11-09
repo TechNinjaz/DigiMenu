@@ -1,37 +1,66 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TechNinjaz.DigiMenu.Core.Entities;
 using TechNinjaz.DigiMenu.Core.Interfaces;
+using TechNinjaz.DigiMenu.Presentation.ModelView;
 
 namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
-    public class MenuItemController : BaseApiController<MenuItem> 
+    [AllowAnonymous]
+    public class MenuItemController : ApiBaseController 
     {
         private readonly IGenericService<MenuItem> _menuItemService;
+        private readonly IGenericService<MenuCategory> _categoryService;
+        private readonly IMapper _mapper;
 
-        public MenuItemController(IGenericService<MenuItem> menuItemService)
+        public MenuItemController(IGenericService<MenuItem> menuItemService ,
+            IGenericService<MenuCategory> categoryService, IMapper mapper)
         {
             _menuItemService = menuItemService;
+            _categoryService = categoryService;
+            _mapper = mapper;
         }
-
-        public override async Task<MenuItem> Create(MenuItem entity)
+        [HttpPost]
+        public  async Task<MenuItemModel> Create(MenuItemModel entity)
         {
-            return await _menuItemService.SaveAsync(entity);
+            return await MapModelAsync(entity);
         }
-
-        public override async Task<MenuItem> Update(MenuItem entity)
+        [HttpPost]
+        public  async Task<MenuItemModel> Update(MenuItemModel entity)
         {
-            return await _menuItemService.UpdateAsync(entity);
+            return await MapModelAsync(entity);
         }
-
-        public override async Task<MenuItem> GetById(int id)
+        [HttpGet("{id}")]
+        public  async Task<MenuItemModel> GetById(int id)
         {
-            return await _menuItemService.GetByIdAsync(id);
+            var menuItem = await _menuItemService.GetByIdAsync(id);
+            return _mapper.Map<MenuItemModel>(menuItem);
         }
-
-        public override async Task<IReadOnlyList<MenuItem>> GetAll()
+        
+        [HttpGet("{categoryId}")]
+        public async Task<IReadOnlyList<MenuItemModel>> GetByCategoryId(int categoryId)
         {
-            return await _menuItemService.GetAllAsync();
+            var cats = await _categoryService.GetByIdAsync(categoryId);
+            return _mapper.Map<IReadOnlyList<MenuItemModel>>(cats.MenuItems);
         }
+        
+        [HttpGet]
+        public async Task<IReadOnlyList<MenuItemModel>> GetAll()
+        {
+            var cats = await _categoryService.GetAllAsync();
+            return _mapper.Map<IReadOnlyList<MenuItemModel>>(cats);
+        }
+    
+        private async Task<MenuItemModel> MapModelAsync(MenuItemModel model, bool isUpdate=false)
+        { 
+            var mapEntity = _mapper.Map<MenuItem>(model); 
+            var entity =  isUpdate ? await _menuItemService.UpdateAsync(mapEntity) : await _menuItemService.SaveAsync(mapEntity);
+            return _mapper.Map<MenuItemModel>(entity);
+        }
+        
+        
     }
 }

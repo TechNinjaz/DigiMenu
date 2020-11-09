@@ -1,0 +1,26 @@
+<!-- Payment Options (START) -->
+<div *ngIf="paymentOptionContent">
+  <div class="container" fxLayoutAlign="center">Your Cards</div>
+  <div class="addFirstCardMessage" *ngIf="addFirstCard">You do not have any cards. Add one below.</div>
+
+  <div *ngIf="creditCardInfo">
+    <div class="creditCardContainer">
+      <div class="cardIcon">
+        <div class="cardPlaceholder"></div>
+      </div>
+      <div class="cardInfo">MasterCard ending in 3734</div>
+      <div class="editBtnContainer">
+        <div class="editBtn" (click)="editCreditCard()">EDIT</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="addPaymentMethodTitle">Add a Payment Method</div>
+
+  <div class="addCardContainer">
+    <div class="addCardBtn" (click)="addCard()">ADD A CARD</div>
+  </div>
+</div>
+
+<!-- Payment Option (END) -->

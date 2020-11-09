@@ -1,7 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {environment} from '../environments/environment';
+import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {MatSidenav} from '@angular/material/sidenav';
+import {AppConstUtils} from './shared/util/AppConstUtils';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +9,12 @@ import {MatSidenav} from '@angular/material/sidenav';
 })
 export class AppComponent implements OnInit {
 
-  title  = environment.APP_TITLE;
-  @ViewChild('rightSidenav', {static: true}) sidenav: MatSidenav;
+  title: string;
+
   public constructor(private titleService: Title ) { }
 
   ngOnInit(): void {
+    this.title = AppConstUtils.TITLE;
     this.titleService.setTitle(this.title);
   }
 

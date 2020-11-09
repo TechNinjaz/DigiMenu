@@ -1,0 +1,20 @@
+<mat-card class="item-card mat-elevation-z4">
+  <mat-card-header>
+    <mat-card-title>{{ MenuItem.title | titlecase}}</mat-card-title>
+  </mat-card-header>
+
+  <img mat-card-image src="{{ MenuItem.itemImageUrl }}" class="card-img" alt="{{ MenuItem.title }}"/>
+
+  <mat-card-content class="menu-item-description">
+    {{ MenuItem.description }}
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button color="warn" (click)="openDialog()" matTooltip="Add item to the order">
+      <mat-icon>add_box</mat-icon>
+    </button>
+    <button mat-button class="menu-item-price">{{ MenuItem.price | currency }}</button>
+  </mat-card-actions>
+</mat-card>
+
+

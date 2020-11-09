@@ -22,6 +22,7 @@ namespace TechNinjaz.DigiMenu.Presentation
             services.AddAutoMapper(typeof(Startup));
             services.InjectServicesDependencies();
             services.AddDefaultDatabaseContext(_config);
+            services.AddIdentityWithJwt(_config);
             services.AddControllersWithViews();
             services.AddSwaggerDoc(_config);
             services.AddSpaStaticFiles(config =>
@@ -50,6 +51,8 @@ namespace TechNinjaz.DigiMenu.Presentation
             }
             
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoint => endpoint.MapControllers());
             
             app.SwaggerConfig(_config, env);

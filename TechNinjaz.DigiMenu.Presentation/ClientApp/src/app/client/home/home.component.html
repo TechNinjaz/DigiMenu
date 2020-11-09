@@ -1,0 +1,54 @@
+<div fxLayout="row" fxLayoutAlign="center" class="welcome_note_div">
+  <h1 class="text-center"> Welcome to {{ title }}</h1>
+</div>
+
+<mat-tab-group mat-align-tabs="center" color="warn"
+               (selectedIndexChange)="getSelectedCategoryTabItems($event)"
+               *ngIf="menuCategories.length > 0">
+
+  <div *ngFor="let category of menuCategories">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="tab-header">
+          <img src="{{category.categoryImageUrl }}" alt="{{ category.name }} image">
+          <div class="tab-image-shadow"></div>
+          <span>{{ category.name | titlecase }}</span>
+        </div>
+      </ng-template>
+
+      <div class="tab-body-content">
+        <div class="category-desc-wr">
+          <p class="category-Name">{{ category.name }}</p>
+          <p class="category-Description" fxFlexAlign="center center">{{ category.description }}</p>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutGap="25px grid" fxLayoutAlign="center">
+          <div *ngFor="let menuItem of menuItems">
+            <app-item-card [MenuItem]="menuItem"></app-item-card>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </div>
+</mat-tab-group>
+
+<ng-container>
+  <button mat-fab class="cart_basket" *ngIf="cartItemCount > 0" [routerLink]="'/order'"
+          matTooltip="you have added {{cartItemCount }} items to your order">
+
+    <mat-icon matBadge="{{cartItemCount }}" matBadgeColor="accent">
+      shopping_basket
+    </mat-icon>
+  </button>
+</ng-container>
+
+
+
+
+
+
+
+
+
+
+
