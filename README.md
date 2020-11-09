@@ -36,15 +36,23 @@ DigiMenu APP
  <i> when you run project the 1st time it will download node packages defined in </i> `TechNinjaz.DigiMenu.Presentation/ClientApp/package.json`
 
 
-## Add Migration #
+## Migration #
 
-command `dotnet ef migrations add initialCreate -p TechNinjaz.DigiMenu.Infrastructure -s TechNinjaz.DigiMenu.Presentation`
+command 
+* add `dotnet ef migrations add newMigrationName -p TechNinjaz.DigiMenu.Infrastructure -s TechNinjaz.DigiMenu.Presentation`
+* create script `dotnet ef migrations script newMigrationName -p TechNinjaz.DigiMenu.Infrastructure -s TechNinjaz.DigiMenu.Presentation`
+* apply changes to db `dotnet ef database update  -p TechNinjaz.DigiMenu.Infrastructure -s TechNinjaz.DigiMenu.Presentation`
 
 <b><i> currently we using SQLite so we need to drop all migrations/db and add them when changing new db model. you can use anther db but just update <i/></b>
 * `StartupExtension.AddDefaultDatabaseContext` 
 * `DesignTimeContextFactory`
 
 
+## Third Party Libs and Framework Docs ##
+* [Angular doc](https://angular.io/docs)
+* [Angular Material Doc](https://material.angular.io/components/badge/overview)
+* [NgFlex examples](https://tburleson-layouts-demos.firebaseapp.com/#/docs)
+* [angular wiki](https://www.angularjswiki.com/)
 
 
 [git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
