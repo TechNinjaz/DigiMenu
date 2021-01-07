@@ -22,6 +22,10 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {NavBarService} from '../service/nav-bar.service';
+import { KitchenModuleComponent } from './kitchen-module/kitchen-module.component';
+import {MatTableModule} from '@angular/material/table';
+import { KitchenService } from '../service/kitchen.service';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +33,8 @@ import {NavBarService} from '../service/nav-bar.service';
     NavigationBarComponent,
     HomeComponent,
     ItemCardComponent,
-    CategoryComponent
+    CategoryComponent,
+    KitchenModuleComponent
   ],
   imports: [
     BrowserModule,
@@ -46,11 +51,13 @@ import {NavBarService} from '../service/nav-bar.service';
     MatDividerModule,
     MatCardModule,
     MatListModule,
+    MatTableModule
   ],
   providers: [
     CategoryService,
     NavBarService,
-    Title
+    Title,
+    KitchenService
   ],
   bootstrap: [AppComponent]
 })
