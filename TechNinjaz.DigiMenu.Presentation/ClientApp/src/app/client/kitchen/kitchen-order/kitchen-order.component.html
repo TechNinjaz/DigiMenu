@@ -1,0 +1,33 @@
+<div mat-dialog-content>
+  <div class="col-md-12">
+    <label class="label" style="font-weight: bold;">Order Type: </label>{{order.OrderType}}
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <label class="label" style="font-weight: bold;">Order Number: </label>{{order.OrderNumber}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="label" style="font-weight: bold;">Order Status: </label>{{order.Status}}
+    </div>
+    <div class="col-md-6">
+      <select (change)="selectChangeHandler($event)">
+        <option *ngFor="let stat of status" [value]="stat.value">
+          {{stat.viewValue}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <label class="label" style="font-weight: bold;">Order Description: </label>{{order.Description}}
+    </div>
+  </div>
+
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close right>Close</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true" (click)="updateStatus(order)">Update status</button>
+</mat-dialog-actions>

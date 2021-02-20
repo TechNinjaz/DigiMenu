@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -47,6 +48,12 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
         {
             var orders = await _orderService.GetAllAsync();
             return _mapper.Map<IReadOnlyList<OrderModel>>(orders.OrderByDescending(order => order.CreatedAt));
+        }
+        [HttpGet()]
+        public async Task<IReadOnlyList<OrderModel>> GetAllOrders()
+        {
+            var orders = await _orderService.GetAllAsync();
+            return _mapper.Map<IReadOnlyList<OrderModel>>(orders.OrderByDescending(order => order.CreatedAt.Date == DateTime.Now.Date));
         }
 
         [HttpGet("{userId}")]

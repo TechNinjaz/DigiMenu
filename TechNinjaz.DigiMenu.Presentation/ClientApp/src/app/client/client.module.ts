@@ -7,7 +7,8 @@ import {ItemOptionsComponent} from './item-options/item-options.component';
 import {AppMaterialModule} from '../app-material.module';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { PaymentOptionComponent } from './payment-option/payment-option.component';
-
+import { KitchenComponent } from './kitchen/kitchen.component';
+import { KitchenOrderComponent } from './kitchen/kitchen-order/kitchen-order.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PaymentOptionComponent } from './payment-option/payment-option.componen
     ItemOptionsComponent,
     OrderHistoryComponent,
     PaymentOptionComponent,
-
+    KitchenComponent,
+    KitchenOrderComponent,
   ],
   imports: [
     CommonModule,

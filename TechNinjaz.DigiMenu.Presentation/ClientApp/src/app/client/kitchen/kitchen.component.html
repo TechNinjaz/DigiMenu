@@ -1,0 +1,42 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="listData" matSort>
+    <!-- <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+      <mat-header-cell *matHeaderCellDef>{{column}}</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+    </ng-container> -->
+    <ng-container matColumnDef="OrderNumber">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Order Number</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.OrderNumber}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="OrderType">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Order Type</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.OrderType}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Status">
+      <mat-header-cell *matHeaderCellDef  mat-sort-header>Status</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.Status}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="showOrder(row)"><mat-icon>launch</mat-icon></button>
+        <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data...
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        No data.
+      </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listData!=null}"></mat-footer-row>
+   <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(listData!=null && listData.data.length==0)}"></mat-footer-row>
+  </table>
+  <!-- <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator> -->
+</div>

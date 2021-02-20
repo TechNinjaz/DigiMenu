@@ -33,4 +33,8 @@ export class OrderService {
   getActiveOrder(userId: number): Observable<IOrder> {
     return this.http.get<IOrder>(this.BaseUrl + `GetActiveOrder/${userId}`);
   }
+
+  getAllOrders(): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>(this.BaseUrl + `GetAllOrders`);
+  }
 }
