@@ -1,9 +1,4 @@
-using System;
-using System.Linq;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,12 +15,14 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
         {
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+            services.AddScoped(typeof(IJwtFactory), typeof(JwtFactoryService));
         }
 
-        public static void AddDefaultDatabaseContext(this IServiceCollection services, IConfiguration configuration)
+        public static void AddDefaultDatabaseContext(this IServiceCollection services, IConfiguration config)
         {
             services.AddDbContext<RestaurantDbContext>(op
-                    => op.UseSqlite(configuration.GetConnectionString("DefaultConnection"), sql
+                => op.UseLazyLoadingProxies()
+                    .UseSqlServer(config.GetConnectionString("DefaultConnection"), sql
                         => sql.MigrationsAssembly(typeof(RestaurantDbContext).Assembly.FullName)));
         }
 

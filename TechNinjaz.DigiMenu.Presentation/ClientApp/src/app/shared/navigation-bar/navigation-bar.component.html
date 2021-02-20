@@ -1,0 +1,70 @@
+<mat-toolbar color="primary">
+  <button mat-button (click)="onSidenavClick()" fxShow fxHide.gt-sm>
+    <mat-icon>{{ toggleActive ? 'menu_open' : 'menu' }}</mat-icon>
+  </button>
+
+  <button mat-button [routerLink]="'/'">
+    <span class="app-title">{{ title }}</span>
+  </button>
+
+  <span class="spacer"></span>
+  <div fxHide fxShow.gt-sm>
+    <ng-container *ngIf="currentUser==null">
+      <button mat-button [routerLink]="'/login'">
+        <mat-icon>login</mat-icon> &nbsp; login
+      </button>
+      <button mat-button [routerLink]="'/register'">
+        <mat-icon>account_circle</mat-icon> &nbsp; Register
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="currentUser">
+      <button mat-button [matMenuTriggerFor]="beforeMenu">
+        Hi {{currentUser.displayName |titlecase }}
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item [routerLink]="'/profile'">My Profile</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item [routerLink]="'/orderHistory'">{{'order history' | titlecase }}</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">logout</button>
+      </mat-menu>
+    </ng-container>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav (click)="onSidenavClick()"
+               [(opened)]="toggleActive"
+               class="sidenav" mode="over"
+               fxShow fxHide.gt-sm>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/'">Home</a>
+      <a mat-list-item [routerLink]="'/kitchen'">Kitchen</a>
+      <a mat-list-item [routerLink]="'/'">Page 3</a>
+      <a mat-list-item [routerLink]="'/'">Page 4</a>
+
+      <mat-divider></mat-divider>
+      <a *ngIf="currentUser==null" mat-list-item [routerLink]="'/login'">
+        <mat-icon>login</mat-icon> &nbsp; login
+      </a>
+      <a mat-list-item (click)="logout()">
+        <mat-icon>logout</mat-icon> &nbsp; logout
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+

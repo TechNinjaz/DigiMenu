@@ -1,4 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.SnackBarError {
+  background-color: #f64040;
+}
+
+.SnackBarSuccess {
+  background-color: #00cc99;
+}
+
+.mat-simple-snackbar-action {
+  color: white;
+}
+.hide{
+  display: none;
+}
+/* mat-table */
+mat-footer-row mat-footer-cell{
+  justify-content: center;
+  font-style: italic;
+}
+.controles-container{
+  width: 100%;
+  padding: 5%;
+}

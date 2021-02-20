@@ -1,0 +1,24 @@
+<!-- Order History (STARTS) -->
+<div *ngIf="orderHistoryContent">
+  <div class="container">
+    <div class="orderHistoryTitle" fxLayoutAlign="center">Order History</div>
+  </div>
+  <div class="tableTitleContainer">
+    <div class="dateTitle">DATE</div>
+<!--    <div class="descriptionTitle">DESCRIPTION</div>-->
+    <div class="paymentTitle">PAYMENT</div>
+  </div>
+  <ng-container *ngFor="let order of orderHistories">
+
+
+    <div class="tableListItemsContainer">
+      <div class="date">{{order.createdAt| date}}</div>
+<!--      <div class="description">-->
+<!--        <div class="title">Professional Plan</div>-->
+<!--        <div class="type">Pay Invoice</div>-->
+<!--      </div>-->
+      <div class="payment">{{order.orderAmount | currency }}</div>
+    </div>
+  </ng-container>
+</div>
+<!-- Order History (ENDS) -->
