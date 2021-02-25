@@ -1,20 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {LocalStorageService} from '../../shared/service/local-storage.service';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AppConstUtils} from '../../shared/util/AppConstUtils';
 import {IOrder} from '../../shared/model/order';
 import {MenuItemService} from '../../shared/service/menu-item.service';
 import {IMenuItem} from '../../shared/model/menu-item';
 import {OrderService} from '../../shared/service/order.service';
-import {AccountService} from '../../shared/service/account.service';
-import {IUser} from '../../shared/model/user';
 import {IUserProfile} from '../../shared/model/user-profile';
-import {NotificationService} from '../../shared/service/notification.service';
 import {Router} from '@angular/router';
-
-export interface IOrderView {
-  name: string;
-  price: number;
-}
+import {AccountService} from '../../shared/service/auth/account.service';
+import {LocalStorageService} from '../../shared/service/config/local-storage.service';
+import {NotificationService} from '../../shared/service/config/notification.service';
+import {IUser} from '../../shared/model/user';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-order-detail',
@@ -22,39 +18,28 @@ export interface IOrderView {
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
-  orderDetails: IOrderView[] = [];
-  currentOrder: IOrder;
-  columnsToDisplay: string[] = ['name', 'price', 'action'];
+  dataSource: any ;
+  currentOrder!: IOrder;
+  columnsToDisplay: string[] = ['title', 'description', 'price'];
   private currentUser: IUser;
 
-  constructor(private localStorageService: LocalStorageService,
-              private accountService: AccountService,
-              private itemService: MenuItemService,
+  constructor(private router: Router,
               private orderService: OrderService,
-              private router: Router,
+              private itemService: MenuItemService,
+              private accountService: AccountService,
+              private localStorageService: LocalStorageService,
               private notificationService: NotificationService) {
+
+    this.currentOrder = this.localStorageService.getItem(AppConstUtils.CART_KEY);
+    this.currentUser = this.localStorageService.getItem(AppConstUtils.CURRENT_USER_KEY);
   }
 
   ngOnInit(): void {
-    this.loadTable();
+    this.dataSource = this.itemService.getAllMenuItem();
   }
-
-  loadTable(): void {
-    this.currentOrder = this.localStorageService.getItem(AppConstUtils.CART_KEY);
-
-    this.currentOrder.orderDetails.forEach(value => {
-      this.itemService.getMenuItemId(value.menuItemId)
-        .subscribe((menuItem: IMenuItem) => {
-          this.orderDetails.push({name: menuItem.title, price: menuItem.price});
-        });
-    });
-  }
-
-
 
   submitOrder(): void {
-    this.currentUser = this.localStorageService.getItem(AppConstUtils.CURRENT_USER_KEY);
-    this.currentOrder.orderAmount = this.getTotalCost();
+    // this.currentOrder.orderAmount = this.getTotalCost();
     this.accountService.getUserProfile(this.currentUser.email)
       .subscribe(profile => {
         this.updateOrAddOrder(profile);
@@ -92,20 +77,15 @@ export class OrderDetailComponent implements OnInit {
   }
 
   mapToHistory(message: string): void {
-    this.router.navigateByUrl('/orderHistory').then(r => {
-      this.notificationService.showSuccess('order has been updated');
+    this.router.navigateByUrl('/orderHistory').then(() => {
+      this.notificationService.showSuccess(message);
     });
   }
 
-  getTotalCost(): number {
-    return this.orderDetails?.map(t => t?.price)
-      .reduce((acc, value) => acc + value, 0);
-  }
-
-  OnDelete(i: number): void {
-  }
-
-
+  // getTotalCost(): number {
+  //   return this.dataSource?.map(t => t?.price)
+  //     .reduce((acc, value) => acc + value, 0);
+  // }
 }
 
 

@@ -13,10 +13,10 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
     public class AccountController : ApiBaseController
     {
-        private readonly UserManager<AuthUser> _userManager;
-        private readonly SignInManager<AuthUser> _signInManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly IMapper _mapper;
+        private readonly SignInManager<AuthUser> _signInManager;
+        private readonly UserManager<AuthUser> _userManager;
 
         public AccountController(UserManager<AuthUser> userManager,
             SignInManager<AuthUser> signInManager,
@@ -28,7 +28,8 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet, Authorize]
+        [HttpGet]
+        [Authorize]
         public async Task<ActionResult<LoginResponseModel>> GetCurrentUser()
         {
             var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
@@ -36,7 +37,8 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             return GetLoginResponseModel(user);
         }
 
-        [HttpGet("{email}"),Authorize]
+        [HttpGet("{email}")]
+        [Authorize]
         public async Task<ActionResult<UserProfileModel>> GetUserProfile(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -69,7 +71,7 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
 
             return GetLoginResponseModel(user);
         }
-        
+
         [HttpPost("{email}")]
         public async Task<ActionResult<bool>> Logout(string email)
         {

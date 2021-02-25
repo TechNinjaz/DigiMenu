@@ -5,6 +5,6 @@ namespace TechNinjaz.DigiMenu.Presentation.ModelView
     public class OrderDetailModel : BaseModel
     {
         public int MenuItemId { get; set; }
-        public IReadOnlyList<SelectedOptionModel> SelectedOptions { get; set; } 
+        public IReadOnlyList<SelectedOptionModel> SelectedOptions { get; set; }
     }
 }

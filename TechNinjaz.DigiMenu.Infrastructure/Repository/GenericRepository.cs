@@ -8,7 +8,7 @@ using TechNinjaz.DigiMenu.Infrastructure.Context;
 
 namespace TechNinjaz.DigiMenu.Infrastructure.Repository
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class, IBaseEntity 
+    public class GenericRepository<T> : IGenericRepository<T> where T : class, IBaseEntity
     {
         private readonly RestaurantDbContext _context;
 
@@ -16,7 +16,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Repository
         {
             _context = context;
         }
-        
+
         public async Task<T> SaveAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity ?? throw new ArgumentNullException(nameof(entity)));
@@ -30,6 +30,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Repository
             await _context.SaveChangesAsync();
             return entity;
         }
+
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
             return await _context.Set<T>().AsQueryable().ToListAsync();
@@ -37,22 +38,21 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Repository
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await  _context.Set<T>().SingleOrDefaultAsync(s=>s.Id.Equals(id));
+            return await _context.Set<T>().SingleOrDefaultAsync(s => s.Id.Equals(id));
         }
-        
-        
+
+
         private IQueryable<T> EagerLoadingQueryable()
         {
             // to be changed, only use it for now
             return typeof(T).GetProperties()
-                .Select(info =>  new { info, p_name = info.PropertyType.FullName})
+                .Select(info => new {info, p_name = info.PropertyType.FullName})
                 .Where(prop => prop.p_name != null)
                 .Where(prop => prop.p_name.Contains(typeof(T).Assembly.FullName!))
                 .Select(prop => prop.info)
                 .Where(info => info.PropertyType.BaseType == null)
                 .Aggregate(_context.Set<T>().AsQueryable(),
                     (current, pInfo) => current.Include(pInfo.Name));
-        } 
-
+        }
     }
 }

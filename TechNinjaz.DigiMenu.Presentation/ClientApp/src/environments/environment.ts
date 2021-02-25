@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   APP_TITLE: 'DigiMenu',
-  BASE_API_URL: `${ window.location.protocol }//${ window.location.host }`
+  BASE_URL: `${ window.location.protocol }//${ window.location.host }`
 };
 
 /*

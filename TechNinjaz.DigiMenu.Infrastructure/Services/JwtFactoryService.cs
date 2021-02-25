@@ -26,14 +26,13 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Services
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.GivenName, user.DisplayName),
+                new Claim(JwtRegisteredClaimNames.GivenName, user.DisplayName)
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                
                 Subject = new ClaimsIdentity(claims),
-                Expires =  DateTime.Now.AddHours(1),
+                Expires = DateTime.Now.AddHours(1),
                 SigningCredentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature),
                 Audience = _config["Jwt:Audience"],
                 Issuer = _config["Jwt:Issuer"]

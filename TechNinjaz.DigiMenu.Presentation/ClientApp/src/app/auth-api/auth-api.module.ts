@@ -1,11 +1,11 @@
-import {ErrorHandler, NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {AppMaterialModule} from '../app-material.module';
+import {SharedModule} from '../shared/shared.module';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -17,10 +17,11 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    AppMaterialModule,
+    SharedModule,
     FlexLayoutModule,
     ReactiveFormsModule,
   ],
   providers: []
 })
-export class AuthApiModule { }
+export class AuthApiModule {
+}

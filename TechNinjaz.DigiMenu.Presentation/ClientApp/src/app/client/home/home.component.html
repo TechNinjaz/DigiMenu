@@ -22,10 +22,10 @@
           <p class="category-Description" fxFlexAlign="center center">{{ category.description }}</p>
         </div>
 
-        <div fxLayout="row wrap" fxLayoutGap="25px grid" fxLayoutAlign="center">
-          <div *ngFor="let menuItem of menuItems">
+        <div class="tab_container" fxLayout="row wrap" fxLayoutGap="25px grid" fxLayoutAlign="center">
+          <ng-container *ngFor="let menuItem of menuItems">
             <app-item-card [MenuItem]="menuItem"></app-item-card>
-          </div>
+          </ng-container>
         </div>
       </div>
     </mat-tab>

@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TechNinjaz.DigiMenu.Core.Entities;
 using TechNinjaz.DigiMenu.Core.Entities.Identity;
 using TechNinjaz.DigiMenu.Core.Interfaces;
 using TechNinjaz.DigiMenu.Presentation.ModelView;
@@ -12,8 +10,8 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
     public class UserController : ApiBaseController
     {
-        private readonly IGenericService<UserProfile> _service;
         private readonly IMapper _mapper;
+        private readonly IGenericService<UserProfile> _service;
 
         public UserController(IGenericService<UserProfile> service, IMapper mapper)
         {

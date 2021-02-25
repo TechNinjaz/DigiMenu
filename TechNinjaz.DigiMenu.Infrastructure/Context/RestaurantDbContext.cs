@@ -9,6 +9,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Context
 {
     public sealed class RestaurantDbContext : IdentityDbContext<AuthUser>
     {
+        
         public DbSet<MenuCategory> Menus { get; set; }
         public DbSet<Shift> Shifts { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -21,17 +22,8 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Context
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<MenuItemOption> MenuItemOptions { get; set; }
 
-        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options)
-            : base(options)
+        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options) : base(options)
         {
         }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            builder.ConfigTable();
- 
-        }
-    
     }
 }

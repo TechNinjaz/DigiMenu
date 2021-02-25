@@ -4,9 +4,9 @@ import {HomeComponent} from './home/home.component';
 import {ItemCardComponent} from './item-card/item-card.component';
 import {OrderDetailComponent} from './order-detail/order-detail.component';
 import {ItemOptionsComponent} from './item-options/item-options.component';
-import {AppMaterialModule} from '../app-material.module';
-import { OrderHistoryComponent } from './order-history/order-history.component';
-import { PaymentOptionComponent } from './payment-option/payment-option.component';
+import {OrderHistoryComponent} from './order-history/order-history.component';
+import {PaymentOptionComponent} from './payment-option/payment-option.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,11 +17,10 @@ import { PaymentOptionComponent } from './payment-option/payment-option.componen
     ItemOptionsComponent,
     OrderHistoryComponent,
     PaymentOptionComponent,
-
   ],
   imports: [
     CommonModule,
-    AppMaterialModule,
+    SharedModule,
   ],
   providers: []
 })

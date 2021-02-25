@@ -1,16 +1,13 @@
-﻿FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
-WORKDIR /app
-
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
-
-# Copy everything else and build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster 
+# Install NodeJs
+RUN apt-get update -yq \
+    && apt-get install curl gnupg -yq \
+    && curl -sL https://deb.nodesource.com/setup_14.x | bash \
+    && apt-get install nodejs -yq \
+    && npm install -g @angular/cli 
+# End Install
 COPY . ./
-RUN dotnet publish -c Release -o out
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-WORKDIR /app
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "TechNinjaz.DigiMenu.Presentation.dll"]
+WORKDIR ./
+RUN dotnet run -p TechNinjaz.DigiMenu.Presentation 
+
