@@ -40,7 +40,7 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             return _mapper.Map<MenuCategoryModel>(category);
         }
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IReadOnlyList<MenuCategoryModel>> GetAll()
         {
             var categories = await _menuService.GetAllAsync();
