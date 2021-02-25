@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TechNinjaz.DigiMenu.Core.Entities;
 using TechNinjaz.DigiMenu.Core.Entities.OrderEntities;
 using TechNinjaz.DigiMenu.Core.Interfaces;
 

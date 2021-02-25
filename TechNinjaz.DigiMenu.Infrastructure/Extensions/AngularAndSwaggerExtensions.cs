@@ -19,18 +19,18 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
             {
                 sw.SwaggerDoc("v1", new OpenApiInfo {Title = config["ApplicationName"]});
 
-                var securityScheme = new OpenApiSecurityScheme()
+                var securityScheme = new OpenApiSecurityScheme
                 {
-                    Description ="JWT Authorization header using the Bearer scheme.",
+                    Description = "JWT Authorization header using the Bearer scheme.",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,
                     Scheme = JwtBearerDefaults.AuthenticationScheme,
-                   
+
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Id = JwtBearerDefaults.AuthenticationScheme
                     }
                 };
                 sw.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, securityScheme);
@@ -46,7 +46,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
             });
         }
 
-        public static void SwaggerConfig(this IApplicationBuilder app, IConfiguration config, IWebHostEnvironment env)
+        public static void SwaggerAndAngularSpaConfig(this IApplicationBuilder app, IConfiguration config, IWebHostEnvironment env)
         {
             app.UseSwagger();
             app.UseSwaggerUI(options =>
@@ -63,10 +63,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
             builder.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                if (env.IsDevelopment()) spa.UseAngularCliServer("start");
             });
         }
 

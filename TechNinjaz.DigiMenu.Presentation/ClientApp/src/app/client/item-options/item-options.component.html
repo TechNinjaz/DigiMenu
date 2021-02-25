@@ -1,6 +1,14 @@
-<h2 mat-dialog-title fxLayoutAlign="center"> {{ menuItem.title| titlecase }} Options</h2>
+<h2 mat-dialog-title fxLayoutAlign="center">
+  <ng-container *ngIf="itemOptionsExist()">
+  {{ menuItem.title| titlecase }} Options
+  </ng-container>
+  <ng-container *ngIf="!itemOptionsExist()">
+     Item to add: {{ menuItem.title| titlecase }}
+  </ng-container>
+</h2>
 <div>
   <mat-dialog-content class="dialog_content">
+
     <mat-selection-list [(ngModel)]="selectedOptions" [compareWith]="compareFunction">
       <mat-list-option *ngFor="let itemOption of itemOptions"
                        [value]="itemOption"
@@ -9,6 +17,7 @@
         <mat-divider></mat-divider>
       </mat-list-option>
     </mat-selection-list>
+
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-raised-button (click)="addToBasket()" color="warn">add to Basket</button>

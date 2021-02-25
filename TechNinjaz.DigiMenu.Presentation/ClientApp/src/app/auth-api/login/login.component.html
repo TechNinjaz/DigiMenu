@@ -3,7 +3,7 @@
 
     <mat-card-title>{{'Login' | titlecase}}</mat-card-title>
     <mat-card-content fxLayout="column" fxLayoutAlign="space-between">
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Enter your email</mat-label>
         <label>
           <input formControlName="email" matInput  placeholder="pat@example.com" required>
@@ -12,7 +12,7 @@
 <!--          <mat-error>{{LoginFormControls.email.errors}}</mat-error>-->
         </ng-container>
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>Enter your password</mat-label>
         <label>
           <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required>

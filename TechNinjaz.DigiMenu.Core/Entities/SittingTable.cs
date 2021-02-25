@@ -6,10 +6,9 @@ namespace TechNinjaz.DigiMenu.Core.Entities
     [Table(nameof(SittingTable))]
     public class SittingTable : BaseEntity
     {
-        [Required]
+        [Required] 
         public string TableArea { get; set; }
-        [Required]   
+        [Required] 
         public string TableNumber { get; set; }
-       
     }
 }

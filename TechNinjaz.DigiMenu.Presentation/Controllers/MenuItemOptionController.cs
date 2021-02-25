@@ -11,10 +11,11 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
     [AllowAnonymous]
     public class MenuItemOptionController : ApiBaseController
     {
-        private readonly IGenericService<MenuItemOption> _optionService;
         private readonly IGenericService<MenuItem> _menuItemService;
+        private readonly IGenericService<MenuItemOption> _optionService;
 
-        public MenuItemOptionController(IGenericService<MenuItemOption> optionService, IGenericService<MenuItem> menuItemService)
+        public MenuItemOptionController(IGenericService<MenuItemOption> optionService,
+            IGenericService<MenuItem> menuItemService)
         {
             _optionService = optionService;
             _menuItemService = menuItemService;

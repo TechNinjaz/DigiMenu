@@ -6,23 +6,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TechNinjaz.DigiMenu.Core.Entities
 {
     [Table(nameof(MenuItem))]
-    public class MenuItem: BaseEntity
+    public class MenuItem : BaseEntity
     {
-        [Required]   
-        public string Title { get; set; }
-        [Required]   
-        public string Description { get; set; }
+        [Required] public string Title { get; set; }
+        [Required] public string Description { get; set; }
         public string ItemImageUrl { get; set; }
-        [Required]   
+        [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
-        [Required]  
-        [DefaultValue(false)]
+        [Required] [DefaultValue(false)] 
         public bool IsActive { get; set; }
-        
-        
         public int MenuCategoryId { get; set; }
         public virtual IEnumerable<MenuItemOption> MenuItemOptions { get; set; }
-        
     }
 }

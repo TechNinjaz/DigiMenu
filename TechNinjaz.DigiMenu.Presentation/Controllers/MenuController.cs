@@ -12,8 +12,8 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
     [AllowAnonymous]
     public class MenuCategoryController : ApiBaseController
     {
-        private readonly IGenericService<MenuCategory> _menuService;
         private readonly IMapper _mapper;
+        private readonly IGenericService<MenuCategory> _menuService;
 
         public MenuCategoryController(IGenericService<MenuCategory> menuService, IMapper mapper)
         {
@@ -39,6 +39,7 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
             var category = await _menuService.GetByIdAsync(id);
             return _mapper.Map<MenuCategoryModel>(category);
         }
+
         [HttpGet]
         [Authorize]
         public async Task<IReadOnlyList<MenuCategoryModel>> GetAll()

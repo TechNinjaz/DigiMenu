@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AppConstUtils} from '../util/AppConstUtils';
 import {IUser} from '../model/user';
-import {LocalStorageService} from '../service/local-storage.service';
-import {AccountService} from '../service/account.service';
+import {LocalStorageService} from '../service/config/local-storage.service';
+import {AccountService} from '../service/auth/account.service';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -16,13 +17,28 @@ export class NavigationBarComponent implements OnInit {
   currentUser: IUser;
 
   constructor(private localStorageService: LocalStorageService,
-              private accountService: AccountService) {
+              private accountService: AccountService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.toggleActive = false;
     this.title = AppConstUtils.TITLE;
     this.loadCurrentUser();
+  }
+
+  hideOnLoginOrRegister(): boolean {
+    switch (this.router.url) {
+      case '/login' : {
+        return true;
+      }
+      case '/register': {
+        return true;
+      }
+      default: {
+        return false;
+      }
+    }
   }
 
   public onSidenavClick(): void {

@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AccountService} from '../../shared/service/account.service';
 import {Router} from '@angular/router';
-import {NotificationService} from "../../shared/service/notification.service";
+import {AccountService} from '../../shared/service/auth/account.service';
+import {NotificationService} from '../../shared/service/config/notification.service';
+import {AuthService} from '../../shared/service/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,11 @@ export class LoginComponent implements OnInit {
   LoginForm: FormGroup;
   LoginFormControls: { [p: string]: AbstractControl };
 
-  constructor(private notificationService: NotificationService,
+  constructor(private router: Router,
+              private auth: AuthService,
               private accountService: AccountService,
-              private  router: Router) {
+              private notificationService: NotificationService) {
+    console.log(this.router.url);
   }
 
   ngOnInit(): void {
@@ -27,24 +30,23 @@ export class LoginComponent implements OnInit {
 
   createLoginForm(): void {
     this.LoginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('',
+        [Validators.required,
+          Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]),
       password: new FormControl('', [Validators.required]),
     });
     this.LoginFormControls = this.LoginForm.controls;
   }
 
   onSubmit(): void {
-
-    console.log(this.LoginForm.valid);
     if (this.LoginForm.valid) {
       this.accountService.login(this.LoginForm.value).subscribe(() => {
         this.router.navigateByUrl('/').then(r => {
-            this.notificationService.showSuccess('Successfully logged In');
-          });
+          this.notificationService.showSuccess('Successfully logged In');
+        });
       });
     }
   }
-
 
   onCancel(): void {
     this.LoginForm.reset();

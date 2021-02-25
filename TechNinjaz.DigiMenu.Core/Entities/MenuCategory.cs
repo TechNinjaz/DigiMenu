@@ -7,11 +7,10 @@ namespace TechNinjaz.DigiMenu.Core.Entities
     [Table(nameof(MenuCategory))]
     public class MenuCategory : BaseEntity
     {
-        [Required]   
+        [Required] 
         public string Name { get; set; }
         public string Description { get; set; }
         public string CategoryImageUrl { get; set; }
         public virtual IEnumerable<MenuItem> MenuItems { get; set; }
-        
     }
 }

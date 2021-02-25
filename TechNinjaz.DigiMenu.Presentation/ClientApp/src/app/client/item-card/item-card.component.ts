@@ -4,8 +4,8 @@ import {ItemOptionsComponent} from '../item-options/item-options.component';
 import {MatDialog} from '@angular/material/dialog';
 import {IOrder} from '../../shared/model/order';
 import {IOrderDetail} from '../../shared/model/order-detail';
-import {LocalStorageService} from '../../shared/service/local-storage.service';
 import {AppConstUtils} from '../../shared/util/AppConstUtils';
+import {LocalStorageService} from '../../shared/service/config/local-storage.service';
 
 @Component({
   selector: 'app-item-card',

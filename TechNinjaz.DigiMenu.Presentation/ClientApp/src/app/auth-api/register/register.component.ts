@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AccountService} from "../../shared/service/account.service";
-import {Router} from "@angular/router";
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AccountService} from '../../shared/service/auth/account.service';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +13,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   registerFormControls: { [p: string]: AbstractControl };
 
-  constructor(private accountService: AccountService,
-              private  router: Router) {
+  constructor(private  router: Router,
+              private accountService: AccountService) {
   }
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
-      confirmPassword: new FormControl('', [Validators.required], [this.password.bind(this)]),
+      confirmPassword: new FormControl('', [Validators.required])
     });
     this.registerFormControls = this.registerForm.controls;
   }
@@ -48,9 +48,9 @@ export class RegisterComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
-  private password(formGroup: FormGroup): any {
-    const {value: password} = formGroup.get('password');
-    const {value: confirmPassword} = formGroup.get('confirmPassword');
-    return password === confirmPassword ? null : {passwordNotMatch: true};
-  }
+  // private password(formGroup: FormGroup): any {
+  //   const {value: password} = formGroup.get('password');
+  //   const {value: confirmPassword} = formGroup.get('confirmPassword');
+  //   return password === confirmPassword ? null : {passwordNotMatch: true};
+  // }
 }

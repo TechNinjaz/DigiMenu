@@ -7,11 +7,11 @@ namespace TechNinjaz.DigiMenu.Core.Entities
     [Table(nameof(Shift))]
     public class Shift : BaseEntity
     {
-        [Required]   
+        [Required] 
         public TimeSpan ShiftStartTime { get; set; }
-        [Required]   
+        [Required] 
         public TimeSpan ShiftEndTime { get; set; }
-        [Required]   
+        [Required]
         public string Description { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {AppConstUtils} from '../util/AppConstUtils';
+import {AppConstUtils} from '../../util/AppConstUtils';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +14,15 @@ export class LocalStorageService {
   }
 
   getItem(key: string): any {
-    if (this.isLocalStorageSupported) {
-      return JSON.parse(localStorage.getItem(key));
+    if (this.isLocalStorageSupported()) {
+      const value: any = localStorage.getItem(key);
+      return JSON.parse(value);
     }
     return null;
   }
 
   addItem(key: string, value: any): boolean {
-    if (this.isLocalStorageSupported) {
+    if (this.isLocalStorageSupported()) {
       localStorage.setItem(key, JSON.stringify(value));
       this.storageChange.next({
         type: AppConstUtils.STORAGE_ADD_TYPE_KEY,
@@ -34,7 +35,7 @@ export class LocalStorageService {
   }
 
   removeItem(key: string): boolean {
-    if (this.isLocalStorageSupported) {
+    if (this.isLocalStorageSupported()) {
       localStorage.removeItem(key);
       this.storageChange.next({
         type: AppConstUtils.STORAGE_REMOVE_TYPE_KEY,
@@ -45,7 +46,7 @@ export class LocalStorageService {
     return false;
   }
 
-   clearStorage(): void {
+  clearStorage(): void {
     localStorage.clear();
     this.storageChange.next(null);
   }

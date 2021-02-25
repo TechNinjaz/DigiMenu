@@ -50,4 +50,8 @@ export class ItemOptionsComponent implements OnInit {
 
     this.dialogRef.close(this.orderDetail);
   }
+
+  itemOptionsExist(): boolean {
+    return this.itemOptions !== undefined && this.itemOptions?.length > 0;
+  }
 }

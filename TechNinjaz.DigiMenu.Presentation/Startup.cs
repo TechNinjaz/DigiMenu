@@ -25,10 +25,7 @@ namespace TechNinjaz.DigiMenu.Presentation
             services.AddIdentityWithJwt(_config);
             services.AddControllersWithViews();
             services.AddSwaggerDoc(_config);
-            services.AddSpaStaticFiles(config =>
-            {
-                config.RootPath = "ClientApp/dist";
-            });
+            services.AddSpaStaticFiles(config => { config.RootPath = "ClientApp/dist"; });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,19 +42,15 @@ namespace TechNinjaz.DigiMenu.Presentation
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
-            
+            if (!env.IsDevelopment()) app.UseSpaStaticFiles();
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoint => endpoint.MapControllers());
-            
-            app.SwaggerConfig(_config, env);
-            app.EnsureMigrationsRunAsync();
 
+            app.SwaggerAndAngularSpaConfig(_config, env);
+            app.EnsureMigrationsRunAsync();
         }
     }
 }

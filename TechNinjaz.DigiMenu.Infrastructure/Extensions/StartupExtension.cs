@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
 
         public static void AddDefaultDatabaseContext(this IServiceCollection services, IConfiguration config)
         {
+            Console.Out.WriteLine(config.GetConnectionString("DefaultConnection"));
             services.AddDbContext<RestaurantDbContext>(op
                 => op.UseLazyLoadingProxies()
                     .UseSqlServer(config.GetConnectionString("DefaultConnection"), sql
@@ -30,7 +32,11 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
         {
             using var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<RestaurantDbContext>();
-            await context.Database.MigrateAsync();
+            if (context.Database.IsSqlServer())
+            {
+                await context.Database.MigrateAsync();
+            }
+           
         }
     }
 }

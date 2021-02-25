@@ -9,15 +9,14 @@ namespace TechNinjaz.DigiMenu.Core.Entities.Identity
     public class UserProfile : IBaseEntity
     {
         public int Id { get; set; }
-        [Required]   
+        [Required] 
         public string FistName { get; set; }
         public string LastName { get; set; }
-        [DefaultValue(false)]
+        [DefaultValue(false)] 
         public bool IsStaffMember { get; set; }
-
         public string AuthUserId { get; set; }
-        public virtual AuthUser AuthUser { get; set; }  // navigation property
-              
+        
+        public virtual AuthUser AuthUser { get; set; }
+     
     }
-    
 }

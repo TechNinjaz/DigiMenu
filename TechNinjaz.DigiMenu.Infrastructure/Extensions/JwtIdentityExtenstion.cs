@@ -14,7 +14,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
         public static void AddIdentityWithJwt(this IServiceCollection services, IConfiguration config)
         {
             var builder = services.AddIdentityCore<AuthUser>();
-            
+
             builder = new IdentityBuilder(builder.UserType, builder.Services);
             builder.AddEntityFrameworkStores<RestaurantDbContext>();
             builder.AddSignInManager<SignInManager<AuthUser>>();
@@ -29,7 +29,7 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Extensions
                         ValidateAudience = true,
                         ValidAudience = config["Jwt:Audience"],
                         ValidIssuer = config["Jwt:Issuer"],
-                        ValidateIssuer = true,
+                        ValidateIssuer = true
                     };
                 });
         }
