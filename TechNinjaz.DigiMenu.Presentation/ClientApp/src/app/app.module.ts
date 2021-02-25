@@ -6,6 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {SharedModule} from './shared/shared.module';
+import {KitchenModule} from './kitchen/kitchen.module';
 import {ClientModule} from './client/client.module';
 import {AdminModule} from './admin/admin.module';
 import {AuthApiModule} from './auth-api/auth-api.module';
@@ -14,7 +15,6 @@ import {GlobalErrorHandler} from './shared/util/global-error-handler';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import {ClientRoutingModule} from './client/client-routing.module';
-import { KitchenOrderComponent } from './client/kitchen/kitchen-order/kitchen-order.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +28,10 @@ import { KitchenOrderComponent } from './client/kitchen/kitchen-order/kitchen-or
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     SharedModule,
+    KitchenModule,
     ClientModule,
     AuthApiModule,
     AdminModule,
-
   ],
   providers: [
     Title,
@@ -39,8 +39,7 @@ import { KitchenOrderComponent } from './client/kitchen/kitchen-order/kitchen-or
     {provide: ErrorHandler, useClass: GlobalErrorHandler},
     {provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true}
   ],
-  bootstrap: [AppComponent],
-  entryComponents: [KitchenOrderComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
