@@ -8,29 +8,31 @@
   </button>
 
   <span class="spacer"></span>
-  <div fxHide fxShow.gt-sm>
-    <ng-container *ngIf="currentUser==null">
-      <button mat-button [routerLink]="'/login'">
-        <mat-icon>login</mat-icon> &nbsp; login
-      </button>
-      <button mat-button [routerLink]="'/register'">
-        <mat-icon>account_circle</mat-icon> &nbsp; Register
-      </button>
-    </ng-container>
+  <div fxShow [fxHide]="hideOnLoginOrRegister()">
+    <div fxHide fxShow.gt-sm>
+      <ng-container *ngIf="currentUser==null">
+        <button mat-button [routerLink]="'/login'">
+          <mat-icon>login</mat-icon> &nbsp; login
+        </button>
+        <button mat-button [routerLink]="'/register'">
+          <mat-icon>account_circle</mat-icon> &nbsp; Register
+        </button>
+      </ng-container>
 
-    <ng-container *ngIf="currentUser">
-      <button mat-button [matMenuTriggerFor]="beforeMenu">
-        Hi {{currentUser.displayName |titlecase }}
-        <mat-icon>account_circle</mat-icon>
-      </button>
-      <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item [routerLink]="'/profile'">My Profile</button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item [routerLink]="'/orderHistory'">{{'order history' | titlecase }}</button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item (click)="logout()">logout</button>
-      </mat-menu>
-    </ng-container>
+      <ng-container *ngIf="currentUser">
+        <button mat-button [matMenuTriggerFor]="beforeMenu">
+          Hi {{currentUser.displayName |titlecase }}
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item [routerLink]="'/profile'">My Profile</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item [routerLink]="'/orderHistory'">{{'order history' | titlecase }}</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()">logout</button>
+        </mat-menu>
+      </ng-container>
+    </div>
   </div>
 </mat-toolbar>
 
@@ -45,14 +47,15 @@
       <a mat-list-item [routerLink]="'/'">Page 3</a>
       <a mat-list-item [routerLink]="'/'">Page 4</a>
 
-      <mat-divider></mat-divider>
-      <a *ngIf="currentUser==null" mat-list-item [routerLink]="'/login'">
-        <mat-icon>login</mat-icon> &nbsp; login
-      </a>
-      <a mat-list-item (click)="logout()">
-        <mat-icon>logout</mat-icon> &nbsp; logout
-      </a>
-
+      <div fxShow [fxHide]="hideOnLoginOrRegister()">
+        <mat-divider></mat-divider>
+        <a *ngIf="currentUser==null" mat-list-item [routerLink]="'/login'">
+          <mat-icon>login</mat-icon> &nbsp; login
+        </a>
+        <a mat-list-item (click)="logout()">
+          <mat-icon>logout</mat-icon> &nbsp; logout
+        </a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
 

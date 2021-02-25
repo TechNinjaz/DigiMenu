@@ -8,22 +8,19 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
+                "AspNetRoles",
+                table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_AspNetRoles", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
+                "AspNetUsers",
+                table => new
                 {
                     Id = table.Column<string>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
@@ -42,14 +39,11 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     DisplayName = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_AspNetUsers", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "MenuCategory",
-                columns: table => new
+                "MenuCategory",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -57,42 +51,33 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                     Description = table.Column<string>(nullable: true),
                     CategoryImageUrl = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MenuCategory", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_MenuCategory", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "OrderStatus",
-                columns: table => new
+                "OrderStatus",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderStatus", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_OrderStatus", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "PaymentMethod",
-                columns: table => new
+                "PaymentMethod",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PaymentMethod", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_PaymentMethod", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Shift",
-                columns: table => new
+                "Shift",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -100,28 +85,22 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                     ShiftEndTime = table.Column<TimeSpan>(nullable: false),
                     Description = table.Column<string>(nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Shift", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Shift", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "SittingTable",
-                columns: table => new
+                "SittingTable",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TableArea = table.Column<string>(nullable: false),
                     TableNumber = table.Column<string>(nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SittingTable", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_SittingTable", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "AspNetRoleClaims",
-                columns: table => new
+                "AspNetRoleClaims",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -133,16 +112,16 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
+                        "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        x => x.RoleId,
+                        "AspNetRoles",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
-                columns: table => new
+                "AspNetUserClaims",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -154,16 +133,16 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        x => x.UserId,
+                        "AspNetUsers",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
-                columns: table => new
+                "AspNetUserLogins",
+                table => new
                 {
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
@@ -172,42 +151,42 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new {x.LoginProvider, x.ProviderKey});
                     table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        x => x.UserId,
+                        "AspNetUsers",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
-                columns: table => new
+                "AspNetUserRoles",
+                table => new
                 {
                     UserId = table.Column<string>(nullable: false),
                     RoleId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new {x.UserId, x.RoleId});
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
+                        "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        x => x.RoleId,
+                        "AspNetRoles",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        x => x.UserId,
+                        "AspNetUsers",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
-                columns: table => new
+                "AspNetUserTokens",
+                table => new
                 {
                     UserId = table.Column<string>(nullable: false),
                     LoginProvider = table.Column<string>(nullable: false),
@@ -216,18 +195,18 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new {x.UserId, x.LoginProvider, x.Name});
                     table.ForeignKey(
-                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        x => x.UserId,
+                        "AspNetUsers",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserProfile",
-                columns: table => new
+                "UserProfile",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -240,23 +219,23 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_UserProfile", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserProfile_AspNetUsers_AuthUserId",
-                        column: x => x.AuthUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        "FK_UserProfile_AspNetUsers_AuthUserId",
+                        x => x.AuthUserId,
+                        "AspNetUsers",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MenuItem",
-                columns: table => new
+                "MenuItem",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
                     ItemImageUrl = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>("decimal(18,2)", nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     MenuCategoryId = table.Column<int>(nullable: false)
                 },
@@ -264,22 +243,22 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_MenuItem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MenuItem_MenuCategory_MenuCategoryId",
-                        column: x => x.MenuCategoryId,
-                        principalTable: "MenuCategory",
-                        principalColumn: "Id",
+                        "FK_MenuItem_MenuCategory_MenuCategoryId",
+                        x => x.MenuCategoryId,
+                        "MenuCategory",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
-                columns: table => new
+                "Order",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    GratuityAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    OrderAmount = table.Column<decimal>("decimal(18,2)", nullable: false),
+                    PaidAmount = table.Column<decimal>("decimal(18,2)", nullable: false),
+                    GratuityAmount = table.Column<decimal>("decimal(18,2)", nullable: false),
                     OrderStatusId = table.Column<int>(nullable: false),
                     WaiterId = table.Column<int>(nullable: true),
                     CustomerId = table.Column<int>(nullable: true),
@@ -289,53 +268,53 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Order", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_UserProfile_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "UserProfile",
-                        principalColumn: "Id");
+                        "FK_Order_UserProfile_CustomerId",
+                        x => x.CustomerId,
+                        "UserProfile",
+                        "Id");
                     table.ForeignKey(
-                        name: "FK_Order_OrderStatus_OrderStatusId",
-                        column: x => x.OrderStatusId,
-                        principalTable: "OrderStatus",
-                        principalColumn: "Id",
+                        "FK_Order_OrderStatus_OrderStatusId",
+                        x => x.OrderStatusId,
+                        "OrderStatus",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Order_PaymentMethod_PaymentMethodId",
-                        column: x => x.PaymentMethodId,
-                        principalTable: "PaymentMethod",
-                        principalColumn: "Id",
+                        "FK_Order_PaymentMethod_PaymentMethodId",
+                        x => x.PaymentMethodId,
+                        "PaymentMethod",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Order_UserProfile_WaiterId",
-                        column: x => x.WaiterId,
-                        principalTable: "UserProfile",
-                        principalColumn: "Id");
+                        "FK_Order_UserProfile_WaiterId",
+                        x => x.WaiterId,
+                        "UserProfile",
+                        "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "MenuItemOption",
-                columns: table => new
+                "MenuItemOption",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>("decimal(18,2)", nullable: false),
                     MenuItemId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MenuItemOption", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MenuItemOption_MenuItem_MenuItemId",
-                        column: x => x.MenuItemId,
-                        principalTable: "MenuItem",
-                        principalColumn: "Id",
+                        "FK_MenuItemOption_MenuItem_MenuItemId",
+                        x => x.MenuItemId,
+                        "MenuItem",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderDetail",
-                columns: table => new
+                "OrderDetail",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -346,22 +325,22 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_OrderDetail", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderDetail_MenuItem_MenuItemId",
-                        column: x => x.MenuItemId,
-                        principalTable: "MenuItem",
-                        principalColumn: "Id",
+                        "FK_OrderDetail_MenuItem_MenuItemId",
+                        x => x.MenuItemId,
+                        "MenuItem",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderDetail_Order_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Order",
-                        principalColumn: "Id",
+                        "FK_OrderDetail_Order_OrderId",
+                        x => x.OrderId,
+                        "Order",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "SelectedMenuOption",
-                columns: table => new
+                "SelectedMenuOption",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
@@ -372,105 +351,105 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_SelectedMenuOption", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SelectedMenuOption_OrderDetail_OrderDetailId",
-                        column: x => x.OrderDetailId,
-                        principalTable: "OrderDetail",
-                        principalColumn: "Id",
+                        "FK_SelectedMenuOption_OrderDetail_OrderDetailId",
+                        x => x.OrderDetailId,
+                        "OrderDetail",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetRoleClaims_RoleId",
-                table: "AspNetRoleClaims",
-                column: "RoleId");
+                "IX_AspNetRoleClaims_RoleId",
+                "AspNetRoleClaims",
+                "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles",
-                column: "NormalizedName",
+                "RoleNameIndex",
+                "AspNetRoles",
+                "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserClaims_UserId",
-                table: "AspNetUserClaims",
-                column: "UserId");
+                "IX_AspNetUserClaims_UserId",
+                "AspNetUserClaims",
+                "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserLogins_UserId",
-                table: "AspNetUserLogins",
-                column: "UserId");
+                "IX_AspNetUserLogins_UserId",
+                "AspNetUserLogins",
+                "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_RoleId",
-                table: "AspNetUserRoles",
-                column: "RoleId");
+                "IX_AspNetUserRoles_RoleId",
+                "AspNetUserRoles",
+                "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "EmailIndex",
-                table: "AspNetUsers",
-                column: "NormalizedEmail");
+                "EmailIndex",
+                "AspNetUsers",
+                "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "UserNameIndex",
-                table: "AspNetUsers",
-                column: "NormalizedUserName",
+                "UserNameIndex",
+                "AspNetUsers",
+                "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuItem_MenuCategoryId",
-                table: "MenuItem",
-                column: "MenuCategoryId");
+                "IX_MenuItem_MenuCategoryId",
+                "MenuItem",
+                "MenuCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MenuItemOption_MenuItemId",
-                table: "MenuItemOption",
-                column: "MenuItemId");
+                "IX_MenuItemOption_MenuItemId",
+                "MenuItemOption",
+                "MenuItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_CustomerId",
-                table: "Order",
-                column: "CustomerId",
+                "IX_Order_CustomerId",
+                "Order",
+                "CustomerId",
                 unique: true,
                 filter: "[CustomerId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_OrderStatusId",
-                table: "Order",
-                column: "OrderStatusId");
+                "IX_Order_OrderStatusId",
+                "Order",
+                "OrderStatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_PaymentMethodId",
-                table: "Order",
-                column: "PaymentMethodId");
+                "IX_Order_PaymentMethodId",
+                "Order",
+                "PaymentMethodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_WaiterId",
-                table: "Order",
-                column: "WaiterId",
+                "IX_Order_WaiterId",
+                "Order",
+                "WaiterId",
                 unique: true,
                 filter: "[WaiterId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetail_MenuItemId",
-                table: "OrderDetail",
-                column: "MenuItemId");
+                "IX_OrderDetail_MenuItemId",
+                "OrderDetail",
+                "MenuItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderDetail_OrderId",
-                table: "OrderDetail",
-                column: "OrderId");
+                "IX_OrderDetail_OrderId",
+                "OrderDetail",
+                "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SelectedMenuOption_OrderDetailId",
-                table: "SelectedMenuOption",
-                column: "OrderDetailId");
+                "IX_SelectedMenuOption_OrderDetailId",
+                "SelectedMenuOption",
+                "OrderDetailId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProfile_AuthUserId",
-                table: "UserProfile",
-                column: "AuthUserId",
+                "IX_UserProfile_AuthUserId",
+                "UserProfile",
+                "AuthUserId",
                 unique: true,
                 filter: "[AuthUserId] IS NOT NULL");
         }
@@ -478,58 +457,58 @@ namespace TechNinjaz.DigiMenu.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
+                "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
+                "AspNetUserClaims");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
+                "AspNetUserLogins");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
+                "AspNetUserRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
+                "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "MenuItemOption");
+                "MenuItemOption");
 
             migrationBuilder.DropTable(
-                name: "SelectedMenuOption");
+                "SelectedMenuOption");
 
             migrationBuilder.DropTable(
-                name: "Shift");
+                "Shift");
 
             migrationBuilder.DropTable(
-                name: "SittingTable");
+                "SittingTable");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "OrderDetail");
+                "OrderDetail");
 
             migrationBuilder.DropTable(
-                name: "MenuItem");
+                "MenuItem");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                "Order");
 
             migrationBuilder.DropTable(
-                name: "MenuCategory");
+                "MenuCategory");
 
             migrationBuilder.DropTable(
-                name: "UserProfile");
+                "UserProfile");
 
             migrationBuilder.DropTable(
-                name: "OrderStatus");
+                "OrderStatus");
 
             migrationBuilder.DropTable(
-                name: "PaymentMethod");
+                "PaymentMethod");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                "AspNetUsers");
         }
     }
 }

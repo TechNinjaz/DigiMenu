@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../../shared/service/order.service';
 import {IOrder} from '../../shared/model/order';
 import {IUserProfile} from '../../shared/model/user-profile';
-import {AccountService} from '../../shared/service/account.service';
+import {AccountService} from '../../shared/service/auth/account.service';
 
 @Component({
   selector: 'app-order-history',
@@ -36,10 +36,5 @@ export class OrderHistoryComponent implements OnInit {
     });
 
   }
-
-  // getTotalCost(order: IOrder): number {
-  //   return order?.orderDetails?.map(t => t?.price)
-  //     .reduce((acc, value) => acc + value, 0);
-  // }
 
 }

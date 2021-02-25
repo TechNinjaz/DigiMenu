@@ -1,6 +1,6 @@
 ﻿namespace TechNinjaz.DigiMenu.Presentation.ModelView
 {
-    public class MenuItemModel: BaseModel
+    public class MenuItemModel : BaseModel
     {
         public string Title { get; set; }
         public string Description { get; set; }

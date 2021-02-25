@@ -4,8 +4,8 @@ import {MenuCategoryService} from '../../shared/service/menu-category.service';
 import {AppConstUtils} from '../../shared/util/AppConstUtils';
 import {IMenuItem} from '../../shared/model/menu-item';
 import {MenuItemService} from '../../shared/service/menu-item.service';
-import {LocalStorageService} from '../../shared/service/local-storage.service';
 import {IOrder} from '../../shared/model/order';
+import {LocalStorageService} from '../../shared/service/config/local-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     this.countCartItems();
   }
 
-  getSelectedCategoryTabItems(event): void {
+  getSelectedCategoryTabItems(event: any): void {
     this.selectedIndex = Number(event);
     this.getByItemsCategoryId(this.menuCategories[this.selectedIndex].id);
   }

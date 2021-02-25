@@ -16,18 +16,16 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule,
+  imports: [
     MatFormFieldModule,
     MatInputModule,
-  ],
-  exports: [
     MatDividerModule,
     RouterModule,
     MatCardModule,
@@ -47,7 +45,35 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSidenavModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    BrowserModule,
+    MatSortModule
+  ],
+  exports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatDividerModule,
+    RouterModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTabsModule,
+    FlexLayoutModule,
+    MatBadgeModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatTableModule,
+    MatListModule,
+    FormsModule,
+    MatSortModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
+    BrowserModule,
+    MatSortModule
   ]
 })
 export class AppMaterialModule {

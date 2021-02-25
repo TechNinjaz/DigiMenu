@@ -8,6 +8,5 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
     [Produces(MediaTypeNames.Application.Json)]
     public abstract class ApiBaseController : ControllerBase
     {
-        
     }
 }

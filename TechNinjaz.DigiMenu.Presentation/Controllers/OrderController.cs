@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TechNinjaz.DigiMenu.Core.Entities;
 using TechNinjaz.DigiMenu.Core.Entities.OrderEntities;
 using TechNinjaz.DigiMenu.Core.Interfaces;
 using TechNinjaz.DigiMenu.Presentation.ModelView;
@@ -12,8 +11,8 @@ namespace TechNinjaz.DigiMenu.Presentation.Controllers
 {
     public class OrderController : ApiBaseController
     {
-        private readonly IGenericService<Order> _orderService;
         private readonly IMapper _mapper;
+        private readonly IGenericService<Order> _orderService;
 
         public OrderController(IGenericService<Order> orderService, IMapper mapper)
         {
